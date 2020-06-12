@@ -5,8 +5,8 @@ while [[ ! -z $(ps -ax | grep "[l]ockvf") ]] || [[ ! -z $(ps -ax | grep "[l]ocke
 	sleep 1
 fi
 sleep 3
-#if [[ -z $(ps -ax | grep "/System/Library/CoreServices/[F]inder") ]]; then
-
-	# ADD force finder start if finder is not started 
-
+if [[ -z $(ps -ax | grep "/System/Library/CoreServices/[F]inder") ]]; then
+	#Test required
+	/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder &
+fi
 rm "/tmp/TESTDONE.harts"
