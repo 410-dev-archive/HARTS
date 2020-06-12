@@ -9,11 +9,14 @@
 import Cocoa
 
 class ViewController: NSViewController {
+
+       
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let thisWindow = NSWindow.init(contentViewController: self)
+        thisWindow.zoom(thisWindow)
     }
-    
     
     override var representedObject: Any? {
         didSet {
