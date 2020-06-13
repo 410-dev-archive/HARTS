@@ -42,20 +42,32 @@ class ViewController: NSViewController {
         verbose("Join token: \(SessionTokenField.stringValue)")
         verbose("Decrypting join key...")
         let bundlePath = Bundle.main.resourcePath! + "/"
-        System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "base64decode")!], SessionTokenField.stringValue, "/tmp/dlink.harts")
-        let joinLink = System.readContents(of: "/tmp/dlink.harts")
+        if System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "base64decode")!], SessionTokenField.stringValue, "dlink.harts") != 0 {
+            verbose("ERROR: Invalid token")
+            Graphics.messageBox_errorMessage(title: "Invalid Token", contents: "The token seems invalid, therefore decryption failed.")
+            exit(-12)
+        }
+        let joinLink = System.readContents(of: "/tmp/dlink.harts").replacingOccurrences(of: "\n", with: "")
         System.executeShellScript("rm", "-f", "/tmp/dlink.harts")
+        if joinLink.elementsEqual("returned:nofile") {
+            verbose("ERROR: No meaningful value returned.")
+            Graphics.messageBox_errorMessage(title: "Unexpected Error", contents: "There was an error while starting client. Please report to developer.\nError code: Launcher.BaseDecryptor.FileNotFound\nPotential Culprit: Bash returned operation not permitted error")
+            exit(-11)
+        }else if joinLink.elementsEqual("") {
+            verbose("ERROR: No meaningful value returned.")
+            Graphics.messageBox_errorMessage(title: "Token Error", contents: "There was an error while decrypting token. Please check your token again.\nError code: Launcher.BaseDecryptor.EmptyToken\nPotential Culprit: Invalid character in input stream")
+            exit(-13)
+        }else if !joinLink.starts(with: "http://") && !joinLink.starts(with: "https://") {
+            verbose("ERROR: Decrypted token does not start with public protocol (http)")
+            Graphics.messageBox_errorMessage(title: "Token Error", contents: "Unable to join the session. The token contains unsupported protocol.")
+            exit(-14)
+        }
         verbose("Join link: \(joinLink)")
         
         // Add HASH verification here later!
         
         verbose("Starting client!")
-        System.executeShellScript(Bundle.main.resourcePath! + "/HARTS Student.app/Contents/MacOS/HARTS Student", joinLink)
-        verbose("Client terminated.")
-        verbose("Restarting system services...")
-        System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "testdone")!])
-        System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "launchdmgr-s")!])
-        verbose("Goodbye!")
+        System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "async")!], bundlePath + "/HARTS Student.app/Contents/MacOS/HARTS Student", bundlePath, joinLink)
         exit(0)
     }
     

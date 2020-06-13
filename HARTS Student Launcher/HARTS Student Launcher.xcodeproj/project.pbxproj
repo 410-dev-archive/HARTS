@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3B425182494924400569116 /* testdone in Resources */ = {isa = PBXBuildFile; fileRef = C3B425172494924400569116 /* testdone */; };
+		C3B4251A2494F11600569116 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B425192494F11600569116 /* appicon.png */; };
 		C3BD29432493E12300C58521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD29422493E12300C58521 /* AppDelegate.swift */; };
 		C3BD29452493E12300C58521 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD29442493E12300C58521 /* ViewController.swift */; };
 		C3BD29472493E12300C58521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BD29462493E12300C58521 /* Assets.xcassets */; };
@@ -20,7 +22,6 @@
 		C3BD299924948F3600C58521 /* base64encode in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299124948F3600C58521 /* base64encode */; };
 		C3BD299A24948F3600C58521 /* base64decode in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299224948F3600C58521 /* base64decode */; };
 		C3BD299B24948F3600C58521 /* lockvf in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299324948F3600C58521 /* lockvf */; };
-		C3BD299C24948F3600C58521 /* testdone in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299424948F3600C58521 /* testdone */; };
 		C3BD299D24948F3600C58521 /* launchdmgr-u in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299524948F3600C58521 /* launchdmgr-u */; };
 		C3BD299E24948F3600C58521 /* launchdmgr-s in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299624948F3600C58521 /* launchdmgr-s */; };
 		C3BD299F24948F3600C58521 /* async in Resources */ = {isa = PBXBuildFile; fileRef = C3BD299724948F3600C58521 /* async */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3B425172494924400569116 /* testdone */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = testdone; path = "../backend-student/bin/testdone"; sourceTree = "<group>"; };
+		C3B425192494F11600569116 /* appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon.png; path = "../HARTS Student/appicon.png"; sourceTree = "<group>"; };
 		C3BD293F2493E12300C58521 /* HARTS Student Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HARTS Student Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BD29422493E12300C58521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3BD29442493E12300C58521 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +67,6 @@
 		C3BD299124948F3600C58521 /* base64encode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = base64encode; path = "../backend-student/bin/base64encode"; sourceTree = "<group>"; };
 		C3BD299224948F3600C58521 /* base64decode */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = base64decode; path = "../backend-student/bin/base64decode"; sourceTree = "<group>"; };
 		C3BD299324948F3600C58521 /* lockvf */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = lockvf; path = "../backend-student/bin/lockvf"; sourceTree = "<group>"; };
-		C3BD299424948F3600C58521 /* testdone */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = testdone; path = "../backend-student/bin/testdone"; sourceTree = "<group>"; };
 		C3BD299524948F3600C58521 /* launchdmgr-u */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = "launchdmgr-u"; path = "../backend-student/bin/launchdmgr-u"; sourceTree = "<group>"; };
 		C3BD299624948F3600C58521 /* launchdmgr-s */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = "launchdmgr-s"; path = "../backend-student/bin/launchdmgr-s"; sourceTree = "<group>"; };
 		C3BD299724948F3600C58521 /* async */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = async; path = "../backend-student/bin/async"; sourceTree = "<group>"; };
@@ -109,7 +111,8 @@
 				C3BD299524948F3600C58521 /* launchdmgr-u */,
 				C3BD299024948F3600C58521 /* locker */,
 				C3BD299324948F3600C58521 /* lockvf */,
-				C3BD299424948F3600C58521 /* testdone */,
+				C3B425172494924400569116 /* testdone */,
+				C3B425192494F11600569116 /* appicon.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,11 +268,12 @@
 				C3BD29472493E12300C58521 /* Assets.xcassets in Resources */,
 				C3BD294A2493E12300C58521 /* Main.storyboard in Resources */,
 				C3BD299D24948F3600C58521 /* launchdmgr-u in Resources */,
-				C3BD299C24948F3600C58521 /* testdone in Resources */,
 				C3BD299F24948F3600C58521 /* async in Resources */,
 				C3BD299E24948F3600C58521 /* launchdmgr-s in Resources */,
+				C3B4251A2494F11600569116 /* appicon.png in Resources */,
 				C3BD299A24948F3600C58521 /* base64decode in Resources */,
 				C3BD299924948F3600C58521 /* base64encode in Resources */,
+				C3B425182494924400569116 /* testdone in Resources */,
 				C3BD299B24948F3600C58521 /* lockvf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
