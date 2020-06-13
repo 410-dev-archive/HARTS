@@ -1,6 +1,6 @@
 #!/bin/bash
 touch "/tmp/TESTDONE.harts"
-while [[ ! -z $(ps -ax | grep "[l]ockvf") ]] || [[ ! -z $(ps -ax | grep "[l]ocker") ]]; do
+while [[ ! -z $(ps -ax | grep "[l]ockvf") ]]; do
 	touch "/tmp/TESTDONE.harts"
 	sleep 1
 fi
