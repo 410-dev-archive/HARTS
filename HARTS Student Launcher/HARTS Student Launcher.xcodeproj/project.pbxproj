@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C3B425182494924400569116 /* testdone in Resources */ = {isa = PBXBuildFile; fileRef = C3B425172494924400569116 /* testdone */; };
 		C3B4251A2494F11600569116 /* appicon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B425192494F11600569116 /* appicon.png */; };
+		C3B4251C24950DBB00569116 /* autoreboot in Resources */ = {isa = PBXBuildFile; fileRef = C3B4251B24950DBB00569116 /* autoreboot */; };
 		C3BD29432493E12300C58521 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD29422493E12300C58521 /* AppDelegate.swift */; };
 		C3BD29452493E12300C58521 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BD29442493E12300C58521 /* ViewController.swift */; };
 		C3BD29472493E12300C58521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BD29462493E12300C58521 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		C3B425172494924400569116 /* testdone */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = testdone; path = "../backend-student/bin/testdone"; sourceTree = "<group>"; };
 		C3B425192494F11600569116 /* appicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon.png; path = "../HARTS Student/appicon.png"; sourceTree = "<group>"; };
+		C3B4251B24950DBB00569116 /* autoreboot */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = autoreboot; path = "../backend-student/bin/autoreboot"; sourceTree = "<group>"; };
 		C3BD293F2493E12300C58521 /* HARTS Student Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HARTS Student Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BD29422493E12300C58521 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3BD29442493E12300C58521 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				C3BD299024948F3600C58521 /* locker */,
 				C3BD299324948F3600C58521 /* lockvf */,
 				C3B425172494924400569116 /* testdone */,
+				C3B4251B24950DBB00569116 /* autoreboot */,
 				C3B425192494F11600569116 /* appicon.png */,
 			);
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			files = (
 				C3BD299824948F3600C58521 /* locker in Resources */,
 				C3BD29472493E12300C58521 /* Assets.xcassets in Resources */,
+				C3B4251C24950DBB00569116 /* autoreboot in Resources */,
 				C3BD294A2493E12300C58521 /* Main.storyboard in Resources */,
 				C3BD299D24948F3600C58521 /* launchdmgr-u in Resources */,
 				C3BD299F24948F3600C58521 /* async in Resources */,

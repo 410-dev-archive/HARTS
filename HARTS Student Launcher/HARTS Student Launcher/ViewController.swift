@@ -13,8 +13,8 @@ class ViewController: NSViewController {
     let System: NSSwiftUtils = NSSwiftUtils()
     
     var doVerbose = false
-    let helperBin = ["async", "locker", "lockvf", "testdone", "base64decode", "base64encode", "launchdmgr-u", "launchdmgr-s"]
-    //let helperBinExpectedHASH = ["", "", "", "", "", "", "", ""]
+    let helperBin = ["async", "locker", "lockvf", "testdone", "base64decode", "base64encode", "launchdmgr-u", "launchdmgr-s", "autoreboot"]
+    //let helperBinExpectedHASH = ["", "", "", "", "", "", "", "", ""]
     
     @IBOutlet weak var SessionTokenField: NSTextField!
     @IBOutlet weak var TestJoinButtonOutlet: NSButton!
