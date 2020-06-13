@@ -25,7 +25,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var UI_TestDone: NSButton!
     @IBOutlet weak var UI_MainWebView: WKWebView!
     
-    let CONST_VERSION = ""
+    let CONST_VERSION = "1.0 Alpha"
     
     var BINARIES = ""
     var URL = ""
@@ -40,7 +40,7 @@ class ViewController: NSViewController {
         }else{
             let Graphics: GraphicComponents = GraphicComponents()
             Graphics.messageBox_errorMessage(title: "Invalid launching", contents: "Launch method was invalid. Please use official launcher.")
-            exit(-1)
+//            exit(-1)
         }
         UI_TestDone.isEnabled = false
         let thisWindow = NSWindow.init(contentViewController: self)
