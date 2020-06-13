@@ -1,9 +1,9 @@
 #!/bin/bash
 touch "/tmp/TESTDONE.harts"
 while [[ ! -z $(ps -ax | grep "[l]ockvf") ]]; do
-	touch "/tmp/TESTDONE.harts"
+	echo "" > "/tmp/TESTDONE.harts"
 	sleep 1
-fi
+done
 sleep 3
 if [[ -z $(ps -ax | grep "/System/Library/CoreServices/[F]inder") ]]; then
 	#Test required
