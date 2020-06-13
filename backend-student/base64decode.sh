@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $(echo "$1" | base64 -d) > /tmp/"$2"
+echo $(echo "$1" | base64 --decode) > /tmp/"$2"
