@@ -50,7 +50,7 @@ class ViewController: NSViewController {
         // Add HASH verification here later!
         
         verbose("Starting client!")
-        System.executeShellScript(Bundle.main.resourcePath! + "/HARTS Student.app/Contents/MacOS/HARTS Student")
+        System.executeShellScript(Bundle.main.resourcePath! + "/HARTS Student.app/Contents/MacOS/HARTS Student", joinLink)
         verbose("Client terminated.")
         verbose("Restarting system services...")
         System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "testdone")!])
