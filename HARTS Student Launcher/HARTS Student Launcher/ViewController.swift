@@ -24,13 +24,24 @@ class ViewController: NSViewController {
     
     // 인터페이스 연결
     @IBOutlet weak var SessionTokenField: NSTextField! // 토큰 입력 필드
+    @IBOutlet weak var UsernameField: NSTextField! // 유저네임 입력 필드
     @IBOutlet weak var TestJoinButtonOutlet: NSButton! // 버튼 인터페이스
     @IBOutlet weak var BottomLabel: NSTextField! // 아래 레이블
     
     // 토큰 입력 필드에 변경이 감지될 경우 자동 실행
     @IBAction func OnTokenFieldModification(_ sender: Any) {
-        // 필드 안의 값이 15글자 이상일 경우 참가 버튼을 활성화, 아닐 경우 비활성화
-        if SessionTokenField.stringValue.count > 15 {
+        // 필드 안의 값이 15글자 이상일 경우, 그리고 사용자 이름이 2글자 이상일 경우 참가 버튼을 활성화, 아닐 경우 비활성화
+        OnFieldsUpdate()
+    }
+    
+    // 유저네임 필드 변경이 감지될 경우 자동 실행
+    @IBAction func OnUsernameFieldUpdate(_ sender: Any) {
+        // 필드 안의 값이 15글자 이상일 경우, 그리고 사용자 이름이 2글자 이상일 경우 참가 버튼을 활성화, 아닐 경우 비활성화 (조건은 위와 동일)
+        OnFieldsUpdate()
+    }
+    
+    func OnFieldsUpdate() {
+        if SessionTokenField.stringValue.count >= 15 && UsernameField.stringValue.count >= 2{
             TestJoinButtonOutlet.isEnabled = true
         }else{
             TestJoinButtonOutlet.isEnabled = false
@@ -91,9 +102,13 @@ class ViewController: NSViewController {
         
         verbose("Starting client!")
         
+        // 클라이언트에서 작업을 진행할 수 있도록 값전달
+        System.writeData(to: "/tmp/args-url.harts", content: joinLink)
+        System.writeData(to: "/tmp/args-binloc.harts", content: bundlePath)
+        System.writeData(to: "/tmp/args-username.harts", content: UsernameField.stringValue)
+        
         // 클라이언트를 시작.
-        // (이 부분을 변경할 필요가 있음. 정상적으로 클라이언트가 실행되지 않음. async 가 아닌 open 을 이용해 실행이 필요. 헬퍼에 추가 필요 여부는 추후에 판단. stdin 방식 param input 은 /tmp/args-* 형태로 대체 할 수 있음.)
-        System.executeShellScript(bundlePath + helperBin[helperBin.firstIndex(of: "async")!], bundlePath + "/HARTS Student.app/Contents/MacOS/HARTS Student", bundlePath, joinLink)
+        System.executeShellScript("open", bundlePath + "/HARTS Student.app")
         exit(0) // 종료코드 0 반환. (정상 종료)
     }
     

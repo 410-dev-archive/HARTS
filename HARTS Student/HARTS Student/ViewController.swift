@@ -31,8 +31,10 @@ class ViewController: NSViewController {
     let CONST_VERSION = "1.0 Alpha"
     
     // 런쳐로부터 받아온 parameter 저장공간
-    var BINARIES = "" // 바이너리 저장 공간, 또는 헬퍼가 있는 공간
-    var URL = "" // 테스트 사이트 주소
+    var BINARIES = "" // 바이너리 저장 공간, 또는 헬퍼가 있는 공간, String 으로 초기화
+    var URL = "" // 테스트 사이트 주소, String 으로 초기화
+    var SESSION_TOKEN = "" // 토큰. URL 확인 후 다시 base64encode 활용.
+    var USERNAME = "" // 사용자 이름, String 으로 초기화
     
     // 헬퍼 바이너리
     let helperBin = ["async", "locker", "lockvf", "testdone", "base64decode", "base64encode", "launchdmgr-u", "launchdmgr-s", "autoreboot"]
@@ -43,15 +45,32 @@ class ViewController: NSViewController {
         
         // stdin 방식으로 pass 된 parameter 를 확인함으로서 런쳐를 이용하였는지 확인. 런쳐는 무결성 확인 용도이므로 필수.
         // param 의 개수는 2개인지 확인 한 후, 두번째 parameter 가 http 로 시작하는지 확인. (https 또한 http 로 시작하므로 중복 가능)
-        if CommandLine.arguments.count == 2 && CommandLine.arguments[1].starts(with: "http") {
-            // 존재할 경우 첫번째 param 은 존재할것이라고 예상하고 저장.
-            BINARIES = CommandLine.arguments[0]
-            URL = CommandLine.arguments[1]
-        }else{
-            // 위 조건이 만족되지 않을 경우 오류, -1 을 종료 코드로 반환.
+        let System: NSSwiftUtils = NSSwiftUtils()
+        BINARIES = System.readContents(of: "/tmp/args-binloc.harts").replacingOccurrences(of: "\n", with: "")
+        URL = System.readContents(of: "/tmp/args-url.harts").replacingOccurrences(of: "\n", with: "")
+        
+        if !BINARIES.contains("/") || !URL.starts(with: "http") {
+            // 위 조건중 하나라도 참일 경우 (값이 맞지 않다는 조건이 참일 경우), -1 을 종료 코드로 반환.
             let Graphics: GraphicComponents = GraphicComponents()
             Graphics.messageBox_errorMessage(title: "Invalid launching", contents: "Launch method was invalid. Please use official launcher.")
 //            exit(-1)
+        }
+        
+        // 세션 조인을 위해 Base64 로 URL 인코드.
+        System.executeShellScript(BINARIES + helperBin[5], URL, "/tmp/base64e.harts")
+        SESSION_TOKEN = System.readContents(of: "/tmp/base64e.harts").replacingOccurrences(of: "\n", with: "")
+        
+        // 인코드 값 확인
+        if SESSION_TOKEN.starts(with: "returned:") {
+            // 인코드 실패 또는 파일 접근 실패, -2 반환
+            let Graphics: GraphicComponents = GraphicComponents()
+            Graphics.messageBox_errorMessage(title: "Session Prepare Failed", contents: "There was an error while generating session request.\nError code: Client.BaseEncryptor.NoFile\nPotential Culprit: Too many reasons")
+            exit(-2)
+        }else if SESSION_TOKEN.elementsEqual(""){
+            // 파일을 읽었으나 비어있음, -3 반환
+            let Graphics: GraphicComponents = GraphicComponents()
+            Graphics.messageBox_errorMessage(title: "Session Prepare Failed", contents: "There was an error while generating session request.\nError code: Client.BaseEncryptor.EmptyToken\nPotential Culprit: Invalid character in input stream")
+            exit(-3)
         }
         
         // 테스트 종료 버튼을 비활성화
@@ -79,7 +98,14 @@ class ViewController: NSViewController {
         let Graphics: GraphicComponents = GraphicComponents()
         Graphics.messageBox_dialogue(title: "Test will begin", contents: "Test protocol will now start. The system services will now be suspended and you cannot switch between applications. If system services does not resume after test is over, please restart your computer. ")
         
-        // 락다운 헬퍼 실행 코드를 여기에 추가. 웹킷 및 실행 무결성, 파이썬 결합이 성공적으로 이루어지면 락다운 코드 활성화.
+        // 락다운 헬퍼 실행 코드. 웹킷 및 실행 무결성, 파이썬 결합이 성공적으로 이루어지면 락다운 코드 활성화.
+//        let System: NSSwiftUtils = NSSwiftUtils()
+//        System.executeShellScript(BINARIES + helperBin[6]) // launchdmgr-u
+//        System.executeShellScript(BINARIES + helperBin[1]) // locker
+//        System.executeShellScript(BINARIES + helperBin[2]) // lockvf
+        
+        // Python 으로 세션 조인 코드 실행. (여기에 작성)
+        
         
         // WkWebView 에 시험 화면을 띄워주는 코드를 작성해야함.
         // Webkit update
