@@ -53,9 +53,9 @@ var KERNEL_SCHEDULER_LOOPED = 0;
 var KERNEL_SCHEDULER_RAN = 0;
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
+    KERNEL_LATEST_SERVER = replier;
+    KERNEL_FUNC_REQUEST_USER = sender;
     if (msg.startsWith("&>")) {
-        KERNEL_LATEST_SERVER = replier;
-        KERNEL_FUNC_REQUEST_USER = sender;  
         try{
             require("SecureModule").setPermissionOfUser("KERNEL", "root");
             require("SecureModule").setPermissionOfUser("RGVmYXVsdFVzZXIK", "user");
