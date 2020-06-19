@@ -1,0 +1,11 @@
+{
+    "main": "Kernel5X.js",
+    "option": {
+        "useUnifiedParams": false,
+        "apiLevel": 1,
+		"scriptPower": true,
+        "isCompiling": false,
+        "ignoreApiOff": true,
+        "offOnRuntimeError": false
+    }
+}
