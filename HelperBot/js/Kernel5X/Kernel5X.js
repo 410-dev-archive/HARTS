@@ -48,7 +48,7 @@ var KERNEL_SCHEDULER_LAUNCHED = false;
 var KERNEL_SCHEDULER_TASK = [];
 var KERNEL_SCHEDULER_TIME = [];
 
-var KERNEL_SCHEDULER_DELAY = 50000;
+var KERNEL_SCHEDULER_DELAY = 59000;
 var KERNEL_SCHEDULER_LOOPED = 0;
 var KERNEL_SCHEDULER_RAN = 0;
 
@@ -194,7 +194,7 @@ function help() {
     output += "void configureScheduler()\n";
     output += "void beginScheduler()\n";
     output += "void stopScheduler()\n";
-    output += "void addTaskToScheduler(String moduleName)\n";
+    output += "void addTaskToScheduler(String moduleName, String taskTime)\n";
     output += "void removeTaskFromScheduler(String moduleName)\n";
     output += "void kernelInfo()\n";
     output += "Print jsoup(String URL)\n";
@@ -205,6 +205,7 @@ function configureScheduler() {
     if (!KERNEL_SCHEDULER_CONFIGURED) {
         let Runnable = java.lang.Runnable;
         let Thread = java.lang.Thread;
+        fsread("var/scheduler-run").equals("configured");
         KERNEL_SCHEDULER_MODULE = new Thread(new Runnable({
             run:function() {
                 try{
@@ -266,9 +267,9 @@ function configureScheduler() {
                         for(var i = 0; i < TargetScript.length; i++) {
                             KERNEL_SCHEDULER_LAUNCHED++;
                             try{
-                                Bridge.getScopeOf(TargetScript[i]).scheduleTrigger(newestReplier);
+                                Bridge.getScopeOf(TargetScript[i]).scheduleTrigger(KERNEL_LATEST_SERVER);
                             }catch(e) {
-                                print("[Scheduler] Error while running task: " + TargetScript[i]);
+                                print("[Scheduler] Error while running task: " + TargetScript[i] + "\nError: " + e.name + "\nLine: " + e.lineNumber + "\nMessage: " + e.message);
                             }
                         }
                         try{
@@ -276,7 +277,7 @@ function configureScheduler() {
                         }catch(ee){}
                     }
                     fswrite("var/scheduler-terminated", "terminated");
-                    fsdelete("var/scheduler-run");
+                    fswrite("var/scheduler-run", "null");
                     print("Scheduler stopped.");
                 }catch(e) {
                     print("ERROR: " + e.name + "\n" + e.lineNumber + "\n" + e.message);
