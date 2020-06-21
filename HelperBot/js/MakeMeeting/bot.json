@@ -1,0 +1,11 @@
+{
+    "main": "MakeMeeting.js",
+    "option": {
+        "useUnifiedParams": false,
+        "apiLevel": 1,
+		"scriptPower": true,
+        "isCompiling": false,
+        "ignoreApiOff": false,
+        "offOnRuntimeError": false
+    }
+}
