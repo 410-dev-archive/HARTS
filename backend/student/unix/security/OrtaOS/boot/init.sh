@@ -1,15 +1,7 @@
 #!/bin/bash
 export b_arg="verbose enforce_cli $1 $2 $3 $4 $5 $6"
-if [[ ! -z "$(echo $b_arg | grep "verbose")" ]]; then
-	"$PWD/System/boot/osstart"
-else
-	clear
-	"$PWD/System/boot/splasher"
-	echo ""
-	echo ""
-	echo ""
-	"$PWD/System/boot/osstart" >/dev/null
-fi
+"$PWD/System/boot/splasher"
+"$PWD/System/boot/osstart"
 if [[ -f "$PWD/cache/upgraded" ]]; then
 	rm -rf "$PWD/cache/"*
 	hdiutil detach "$PWD/cache" -force >/dev/null
