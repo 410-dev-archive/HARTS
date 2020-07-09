@@ -1,35 +1,18 @@
-import numpy as np
 import cv2
 
+cap = cv2.VideoCapture(0)
 
-def showVideo():
-    try:
-        print('Turning on Camera')
-        cap = cv2.VideoCapture(0)
+cap.set(3, 720)
+cap.set(4, 1080)
 
-    except:
-        print('Failed to turn on Camera')
-        return
+while True:
+    ret, frame = cap.read()
+    cv2.imshow('test', frame)
 
-    cap.set(3, 480)
-    cap.set(4, 320)
+    k = cv2.waitKey(1)
+    if k == 27:
+        break
 
-    while True:
-        ret, frame = cap.read()
+cap.release()
 
-        if not ret:
-            print('Error Occurred')
-            break
-
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('video', gray)
-
-        k = cv2.waitkey(1) & 0xFF
-        if k == 27:
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
-
-
-showVideo()
+cv2.destroyAllWindows()
