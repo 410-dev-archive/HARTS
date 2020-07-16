@@ -16,6 +16,7 @@ class SessionJoinManager {
         return true
     }
     
+    // MUST EDIT HERE
     func verifySession(sessionCode: String, pass: String) -> Bool {
         if let SessionURL = decryptSessionCodeWrittenInAES(sessionCode: sessionCode, pass: pass) {
             return isSessionAccessible(URL: SessionURL)
@@ -23,5 +24,11 @@ class SessionJoinManager {
 //            return false
             return true
         }
+    }
+    
+    
+    // MUST EDIT HERE
+    func getSessionURL(sessionCode: String, pass: String) -> String {
+        return "https://www.google.com"
     }
 }
