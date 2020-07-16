@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A7CFB24C012880065544F /* AES256CBC.swift */; };
 		C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */; };
 		C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32824BFEB92002B4F32 /* ViewController.swift */; };
 		C3C6C32B24BFEB93002B4F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C6C32A24BFEB93002B4F32 /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		C3C6C35324BFEDC6002B4F32 /* SessionJoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */; };
 		C3C6C35524BFEE2A002B4F32 /* support in Resources */ = {isa = PBXBuildFile; fileRef = C3C6C35424BFEE2A002B4F32 /* support */; };
 		C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */; };
-		C3C6C35A24BFEE90002B4F32 /* AES256CBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35724BFEE90002B4F32 /* AES256CBC.swift */; };
 		C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C35A7CF824C010520065544F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C35A7CFB24C012880065544F /* AES256CBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AES256CBC.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/AES256CBC.swift"; sourceTree = "<group>"; };
 		C3C6C32324BFEB92002B4F32 /* HARTS Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HARTS Student.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3C6C32824BFEB92002B4F32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +67,6 @@
 		C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionJoinManager.swift; sourceTree = "<group>"; };
 		C3C6C35424BFEE2A002B4F32 /* support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = support; sourceTree = "<group>"; };
 		C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSStaticSwiftUtils.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/NSStaticSwiftUtils.swift"; sourceTree = "<group>"; };
-		C3C6C35724BFEE90002B4F32 /* AES256CBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AES256CBC.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/AES256CBC.swift"; sourceTree = "<group>"; };
 		C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicComponents.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/GraphicComponents.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +95,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C35A7CF624C010270065544F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C3C6C31A24BFEB92002B4F32 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +110,7 @@
 				C3C6C33824BFEB93002B4F32 /* HARTS StudentTests */,
 				C3C6C34324BFEB93002B4F32 /* HARTS StudentUITests */,
 				C3C6C32424BFEB92002B4F32 /* Products */,
+				C35A7CF624C010270065544F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,7 +127,7 @@
 		C3C6C32524BFEB92002B4F32 /* HARTS Student */ = {
 			isa = PBXGroup;
 			children = (
-				C3C6C35724BFEE90002B4F32 /* AES256CBC.swift */,
+				C35A7CFB24C012880065544F /* AES256CBC.swift */,
 				C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */,
 				C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */,
 				C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */,
@@ -149,6 +169,7 @@
 				C3C6C31F24BFEB92002B4F32 /* Sources */,
 				C3C6C32024BFEB92002B4F32 /* Frameworks */,
 				C3C6C32124BFEB92002B4F32 /* Resources */,
+				C35A7CF824C010520065544F /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -271,9 +292,9 @@
 			files = (
 				C3C6C35324BFEDC6002B4F32 /* SessionJoinManager.swift in Sources */,
 				C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */,
-				C3C6C35A24BFEE90002B4F32 /* AES256CBC.swift in Sources */,
 				C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */,
 				C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */,
+				C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */,
 				C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

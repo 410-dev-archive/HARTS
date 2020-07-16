@@ -8,16 +8,8 @@
 import Cocoa
 import WebKit
 
-extension WKWebView {
-    func load(_ urlString: String) {
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            load(request)
-        }
-    }
-}
-
 class ViewController: NSViewController {
+    @IBOutlet weak var Outlet_WebView: WKWebView!
     
     @IBOutlet weak var Outlet_Button_TestDone: NSButton!
     @IBOutlet weak var Outlet_Button_AskQuestion: NSButton!
@@ -62,30 +54,48 @@ class ViewController: NSViewController {
     }
     
     @IBAction func Action_Button_OnJoinButtonPressed(_ sender: Any) {
-        Outlet_Button_TestDone.isHidden = false
-        Outlet_Button_AskQuestion.isHidden = false
-        Outlet_TextField_Question.isHidden = false
-        
         Outlet_TextField_SessionCode.isHidden = true
         Outlet_TextField_JoinPassword.isHidden = true
         Outlet_Button_BeginTest.isHidden = true
         Outlet_StandardText_StatusNotifier.isHidden = true
         
-        let WebView = WKWebView.init()
-        WebView.frame = CGRect(x: 0, y: 20, width: 100, height: 100)
-        WebView.load("http://google.com")
-        self.view.addSubview(WebView)
+        realTestScreen(isHidden: false)
+        let SessionManager: SessionJoinManager = SessionJoinManager()
+        WebViewLoad(DestinationURL: SessionManager.getSessionURL(sessionCode: Outlet_TextField_SessionCode.stringValue, pass: Outlet_TextField_JoinPassword.stringValue))
+    }
+    
+    func WebViewLoad(DestinationURL: String) {
+        var content: String! = nil
+        do {
+            content = try String(contentsOf: URL(string: DestinationURL)!)
+        } catch {
+            let Graphics: GraphicComponents = GraphicComponents()
+            Graphics.messageBox_errorMessage(title: "Fatal Error", contents: "There was an error while joining session. Sorry.")
+            exit(9)
+        }
+        Outlet_WebView.loadHTMLString(content, baseURL: nil)
+        
+    }
+    
+    func WebViewNavigate(DestinationURL: String){
+        Outlet_WebView.load(URLRequest(url: URL(string: DestinationURL)!))
+    }
+    
+    func realTestScreen(isHidden: Bool) {
+        Outlet_Button_TestDone.isHidden = isHidden
+        Outlet_Button_AskQuestion.isHidden = isHidden
+        Outlet_TextField_Question.isHidden = isHidden
+        Outlet_WebView.isHidden = isHidden
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realTestScreen(isHidden: true)
         Outlet_Button_BeginTest.isHidden = true
         Outlet_TextField_SessionCode.isEnabled = true
         Outlet_TextField_JoinPassword.isEnabled = true
         
-        Outlet_Button_TestDone.isHidden = true
-        Outlet_Button_AskQuestion.isHidden = true
-        Outlet_TextField_Question.isHidden = true
     }
 
 }
