@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A7CFB24C012880065544F /* AES256CBC.swift */; };
+		C35F834F24C0267100A7BE78 /* S3Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F834E24C0267100A7BE78 /* S3Engine.swift */; };
 		C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */; };
 		C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32824BFEB92002B4F32 /* ViewController.swift */; };
 		C3C6C32B24BFEB93002B4F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3C6C32A24BFEB93002B4F32 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		C35A7CFB24C012880065544F /* AES256CBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AES256CBC.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/AES256CBC.swift"; sourceTree = "<group>"; };
+		C35F834E24C0267100A7BE78 /* S3Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Engine.swift; sourceTree = "<group>"; };
 		C3C6C32324BFEB92002B4F32 /* HARTS Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HARTS Student.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3C6C32824BFEB92002B4F32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */,
 				C3C6C32824BFEB92002B4F32 /* ViewController.swift */,
 				C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */,
+				C35F834E24C0267100A7BE78 /* S3Engine.swift */,
 				C3C6C32A24BFEB93002B4F32 /* Assets.xcassets */,
 				C3C6C32C24BFEB93002B4F32 /* Main.storyboard */,
 				C3C6C32F24BFEB93002B4F32 /* Info.plist */,
@@ -298,6 +301,7 @@
 				C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */,
 				C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */,
 				C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */,
+				C35F834F24C0267100A7BE78 /* S3Engine.swift in Sources */,
 				C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */,
 				C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */,
 			);
