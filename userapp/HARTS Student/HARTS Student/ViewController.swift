@@ -82,23 +82,11 @@ class ViewController: NSViewController {
     }
     
     func WebViewLoad(DestinationURL: String) {
-        var content: String! = nil
-        do {
-            content = try String(contentsOf: URL(string: DestinationURL)!)
-        } catch {
-            let Graphics: GraphicComponents = GraphicComponents()
-            Graphics.messageBox_errorMessage(title: "Fatal Error", contents: "There was an error while joining session. Sorry.")
-            exit(9)
-        }
-        
-        Outlet_WebView.loadHTMLString(content, baseURL: nil)
-        
+        let url = URL(string: DestinationURL)
+        let request = URLRequest(url: url!)
+        Outlet_WebView.load(request)
     }
-    
-    func WebViewNavigate(DestinationURL: String){
-        Outlet_WebView.load(URLRequest(url: URL(string: DestinationURL)!))
-    }
-    
+
     func realTestScreen(isHidden: Bool) {
         Outlet_Button_TestDone.isHidden = isHidden
         Outlet_Button_AskQuestion.isHidden = isHidden
