@@ -121,10 +121,11 @@ class ViewController: NSViewController {
                 if NSSwiftUtils.readContents(of: "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/teletype_input").contains("test_done"){
                     self.detectedOrtaShutdown()
                 }
+                
                 NSSwiftUtils.executeShellScript("sleep", "3")
             }
+            self.stopAsyncLoop = false
         }
-        self.stopAsyncLoop = false
     }
     
     @IBAction func Action_TextField_OnQuestionFieldUpdate(_ sender: Any) {
@@ -153,18 +154,19 @@ class ViewController: NSViewController {
     @IBAction func Action_Button_OnTestDoneButtonPressed(_ sender: Any) {
         let OrtaController: OrtaOSController = OrtaOSController()
         stopAsyncLoop = true
-        //while stopAsyncLoop {}
+        while stopAsyncLoop {}
         if OrtaController.push("test_done") {
             exit(0)
         }else{
             let Graphics: GraphicComponents = GraphicComponents()
             Graphics.messageBox_errorMessage(title: "Error", contents: "Failed to communicate with helper system. You may need to restart your computer.")
+            exit(0)
         }
         
     }
     
     @IBAction func Action_Button_OnRefreshButtonPressed(_ sender: Any) {
-        WebViewNavigate(DestinationURL: TestURLInString)
+        WebViewLoad(DestinationURL: TestURLInString)
     }
 }
 
