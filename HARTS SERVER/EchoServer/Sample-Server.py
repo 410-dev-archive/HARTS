@@ -24,6 +24,7 @@ connectionSock, addr = serverSock.accept()
 print(str(addr), '에서 접속되었습니다.')
 
 while True:
-    send(connectionSock)
 
     receive(connectionSock)
+
+    send(connectionSock)

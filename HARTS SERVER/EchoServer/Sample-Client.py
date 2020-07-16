@@ -19,6 +19,7 @@ clientSock.connect(('127.0.0.1', port))
 print('접속 완료')
 
 while True:
-    receive(clientSock)
 
     send(clientSock)
+
+    receive(clientSock)
