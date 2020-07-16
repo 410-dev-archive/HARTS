@@ -1,28 +1,24 @@
 from socket import *
-from threading import *
-import time
-import cv2
-
-HOST = '127.0.0.1'
-PORT = 8080
-
-client_socket = socket(AF_INET, SOCK_STREAM)
-client_socket.connect((HOST, PORT))
-print("Successfully connected to the server.")
 
 
-def send(socket):
-    while True:
-        sendData = input(">>> ")
-        socket.send(sendData.encode('UTF-8'))
+def send(sock):
+    sendData = input('>>>')
+    sock.send(sendData.encode('utf-8'))
 
 
-def receive(socket):
-    while True:
-        recvData = socket.recv(1024)
-        print("상대방 : " + recvData.decode('UTF-8'))
+def receive(sock):
+    recvData = sock.recv(1024)
+    print('상대방 :', recvData.decode('utf-8'))
 
-sender = Thread(target = send, args = (client_socket, ))
-receiver = Thread(target = send, args = (client_socket, ))
 
-cap = cv2.VideoCapture(0)
+port = 8080
+
+clientSock = socket(AF_INET, SOCK_STREAM)
+clientSock.connect(('127.0.0.1', port))
+
+print('접속 완료')
+
+while True:
+    receive(clientSock)
+
+    send(clientSock)

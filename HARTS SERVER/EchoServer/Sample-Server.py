@@ -1,35 +1,29 @@
 from socket import *
-from threading import *
-import time
 
-HOST = ''
-PORT = 8080
 
-server_socket = socket(AF_INET, SOCK_STREAM)
-server_socket.bind((HOST, PORT))
-server_socket.listen()
-print("Server is successfully booted.")
-print("Waiting for client...")
+def send(sock):
+    sendData = input('>>>')
+    sock.send(sendData.encode('utf-8'))
 
-connection_socket, connection_addr = server_socket.accept()
-print(str(connection_addr) + " is connected.")
 
-def send(socket):
-    while True:
-        sendData = input (">>> ")
-        socket.send(sendData.encode('UTF-8'))
+def receive(sock):
+    recvData = sock.recv(1024)
+    print('상대방 :', recvData.decode('utf-8'))
 
-def receive(socket):
-    while True:
-        recvData = socket.recv(1024)
-        print("상대방 : " + recvData.decode('UTF-8'))
 
-sender = Thread(target = send, args = (connection_socket, ))
-receiver = Thread(target = receive, args = (connection_socket, ))
+port = 8080
 
-sender.start()
-receiver.start()
+serverSock = socket(AF_INET, SOCK_STREAM)
+serverSock.bind(('', port))
+serverSock.listen(1)
+
+print('%d번 포트로 접속 대기중...'%port)
+
+connectionSock, addr = serverSock.accept()
+
+print(str(addr), '에서 접속되었습니다.')
 
 while True:
-    time.sleep(1)
-    pass
+    send(connectionSock)
+
+    receive(connectionSock)
