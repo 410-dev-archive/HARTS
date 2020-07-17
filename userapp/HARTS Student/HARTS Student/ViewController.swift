@@ -33,7 +33,7 @@ class ViewController: NSViewController {
             Outlet_TextField_JoinPassword.isEnabled = false
             DispatchQueue.main.async {
                 let SessionValidation: SessionJoinManager = SessionJoinManager()
-                if SessionValidation.verifySession(sessionCode: self.Outlet_TextField_SessionCode.stringValue, pass: self.Outlet_TextField_JoinPassword.stringValue) {
+                if SessionValidation.verifySession(sessionCode: self.Outlet_TextField_SessionCode.stringValue, pass: self.Outlet_TextField_JoinPassword.stringValue, name: self.Outlet_TextField_Name.stringValue) {
                     self.Outlet_Button_BeginTest.isHidden = false
                     self.Outlet_StandardText_StatusNotifier.stringValue = "Session is valid."
                     self.Outlet_StandardText_StatusNotifier.textColor = .green
