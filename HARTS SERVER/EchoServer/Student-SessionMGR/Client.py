@@ -1,73 +1,45 @@
 from socket import *
+import sys
 
-dataset = ["ASK_ACCESS:gt5c5i:ng6a9h", "ASK_ACCESS:w:ng6a9h", "ASK_ACCESS:gt5c5i:w", "ASK_ACCESS:gt5c5i"]
-
-def send(sock):
-	sendData = input('>')
-	sock.send(dataset[int(sendData)].encode('utf-8'))
+def send(sock, toSend):
+	sock.send(toSend.encode('utf-8'))
+	print("[PY] Sent.")
 
 def receive(sock):
 	recvData = sock.recv(1024).decode('utf-8')
+	print("[PY] Received.")
 	if recvData == "NO":
-		print("Invalid session.")
+		print("[PY] Invalid session.")
+		IPRecord = open("/tmp/HARTS/error.harts", "w")
+		IPRecord.write("invalid")
+		IPRecord.close()
 	elif recvData == "NARG":
-		print("Program error. Please upgrade the client.")
+		print("[PY] Program error. Please upgrade the client.")
+		IPRecord = open("/tmp/HARTS/error.harts", "w")
+		IPRecord.write("error")
+		IPRecord.close()
 	elif recvData == "ERROR":
-		print("Server returned error. Please try again later, or try upgrading client.")
+		print("[PY] Server returned error. Please try again later, or try upgrading client.")
 	elif recvData.startswith("YES:"):
 		recvData = recvData.replace("YES:", "")
-		print("IP address received: " + recvData)
+		print("[PY] IP address received: " + recvData)
 		IPRecord = open("/tmp/HARTS/tip.harts", "w")
 		IPRecord.write(recvData)
 		IPRecord.close()
 	else:
-		print("RECEIVED: " + recvData)
+		print("[PY] RECEIVED: " + recvData)
 
+try:
+	if sys.argv[1].startswith("ASK_ACCESS:"):
+		f = 0 # Dummy code
+except:
+	exit(0)
+
+print("[PY] Connecting Socket...")
 port = 8080
-
 clientSock = socket(AF_INET, SOCK_STREAM)
+print("[PY] Sending packet: " + sys.argv[1])
 clientSock.connect(('127.0.0.1', port))
-
-print('Connected to server.')
-
-send(clientSock)
+send(clientSock, sys.argv[1])
 receive(clientSock)
-
-
-# Actually applied to HARTS
-
-# from socket import *
-# import sys
-
-# def send(sock, toSend):
-# 	sock.send(toSend.encode('utf-8'))
-
-# def receive(sock):
-# 	recvData = sock.recv(1024).decode('utf-8')
-# 	if recvData == "NO":
-# 		print("Invalid session.")
-# 	elif recvData == "NARG":
-# 		print("Program error. Please upgrade the client.")
-# 	elif recvData == "ERROR":
-# 		print("Server returned error. Please try again later, or try upgrading client.")
-# 	elif recvData.startswith("YES:"):
-# 		recvData = recvData.replace("YES:", "")
-# 		print("IP address received: " + recvData)
-# 		IPRecord = open("/tmp/HARTS/tip.harts", "w")
-# 		IPRecord.write(recvData)
-# 		IPRecord.close()
-# 	else:
-# 		print("RECEIVED: " + recvData)
-
-# try:
-# 	if sys.argv[0].startswith("ASK_ACCESS:"):
-# 		f = 0 # Dummy code
-# except:
-# 	exit(0)
-
-# port = 8080
-# clientSock = socket(AF_INET, SOCK_STREAM)
-# clientSock.connect(('127.0.0.1', port))
-# send(clientSock)
-# receive(clientSock)
 

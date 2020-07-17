@@ -18,18 +18,18 @@ def receive(sock):
 		print("ERROR: Received unknown data: \"" + recvData + "\"")
 
 try:
-	if "." in sys.argv[0]:
+	if "." in sys.argv[1]:
 		f = 0 # Dummy code
 except:
 	exit(0)
 
 port = 27667
-
+print("[PY] Connecting Socket...")
 clientSock = socket(AF_INET, SOCK_STREAM)
 TeacherCOM = open("/tmp/HARTS/tip.harts", "r")
 clientSock.connect((TeacherCOM.read(), port))
 TeacherCOM.close()
-
-send(clientSock)
+print("[PY] Sending packet: " + sys.argv[1])
+send(clientSock, sys.argv[1])
 receive(clientSock)
 
