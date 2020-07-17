@@ -16,7 +16,6 @@
 		C3C6C33A24BFEB93002B4F32 /* HARTS_StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C33924BFEB93002B4F32 /* HARTS_StudentTests.swift */; };
 		C3C6C34524BFEB93002B4F32 /* HARTS_StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */; };
 		C3C6C35324BFEDC6002B4F32 /* SessionJoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */; };
-		C3C6C35524BFEE2A002B4F32 /* support in Resources */ = {isa = PBXBuildFile; fileRef = C3C6C35424BFEE2A002B4F32 /* support */; };
 		C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */; };
 		C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */; };
 		C3F4304F24C01910003EB70B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F4304E24C01910003EB70B /* WebKit.framework */; };
@@ -68,7 +67,6 @@
 		C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARTS_StudentUITests.swift; sourceTree = "<group>"; };
 		C3C6C34624BFEB93002B4F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionJoinManager.swift; sourceTree = "<group>"; };
-		C3C6C35424BFEE2A002B4F32 /* support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = support; sourceTree = "<group>"; };
 		C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSStaticSwiftUtils.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/NSStaticSwiftUtils.swift"; sourceTree = "<group>"; };
 		C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicComponents.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/GraphicComponents.swift"; sourceTree = "<group>"; };
 		C3F4304E24C01910003EB70B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -111,7 +109,6 @@
 		C3C6C31A24BFEB92002B4F32 = {
 			isa = PBXGroup;
 			children = (
-				C3C6C35424BFEE2A002B4F32 /* support */,
 				C3C6C32524BFEB92002B4F32 /* HARTS Student */,
 				C3C6C33824BFEB93002B4F32 /* HARTS StudentTests */,
 				C3C6C34324BFEB93002B4F32 /* HARTS StudentUITests */,
@@ -270,7 +267,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C6C35524BFEE2A002B4F32 /* support in Resources */,
 				C3C6C32B24BFEB93002B4F32 /* Assets.xcassets in Resources */,
 				C3C6C32E24BFEB93002B4F32 /* Main.storyboard in Resources */,
 			);

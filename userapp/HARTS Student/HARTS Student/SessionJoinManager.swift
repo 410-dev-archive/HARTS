@@ -13,16 +13,24 @@ class SessionJoinManager {
     }
     
     private func isSessionAccessible(URL: String) -> Bool {
-        return true
+        if NSSwiftUtils.executeShellScript("curl", "-Ls", URL) == 0{
+            return true
+        }else{
+            return false
+        }
     }
     
     // MUST EDIT HERE
-    func verifySession(sessionCode: String, pass: String) -> Bool {
-        if let SessionURL = decryptSessionCodeWrittenInAES(sessionCode: sessionCode, pass: pass) {
+    func verifySession(sessionCode: String, pass: String, name: String) -> Bool {
+        let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
+        NSSwiftUtils.executeShellScript(Bundle.main.resourcePath! + "/support/python3/bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
+        NSSwiftUtils.executeShellScript(Bundle.main.resourcePath! + "/support/python3/bin/python3", Bundle.main.resourcePath! + "/support/getTestHost.py", name)
+        let SessionURL = NSSwiftUtils.readContents(of: "/tmp/HARTS/testhost.harts")
+        if  SessionURL.starts(with: "http"){
+            NSSwiftUtils.deleteFile(at: "/tmp/HARTS/testhost.harts")
             return isSessionAccessible(URL: SessionURL)
         }else{
-//            return false
-            return true
+            return false
         }
     }
     
