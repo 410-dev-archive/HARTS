@@ -1,7 +1,7 @@
 from socket import *
 
 ReadStudentNameList = ["John Appleseed", "Benjamin Willis", "Tom Choi", "Sherlock Holmes"]
-TEST_LINK = "https://www.google.com"
+TEST_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSd7kImJ6H3wqdHWYEssvSnDacKJkNNK2-JGhX2I6zSsY8I_5w/viewform?vc=0&c=0&w=1&usp=mail_form_link"
 
 def send(sock, message):
 	sock.send(message.encode('utf-8'))
@@ -25,9 +25,8 @@ def receive(sock):
 port = 27667
 serverSock = socket(AF_INET, SOCK_STREAM)
 serverSock.bind(('', port))
-print('Session is now open on port: ', port)
+print('LISTENING ON PORT: ', port)
 while True:
 	serverSock.listen(1)
-	connectionSock = serverSock.accept()
+	connectionSock, addr = serverSock.accept()
 	receive(connectionSock)
-
