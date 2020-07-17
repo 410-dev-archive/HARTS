@@ -21,6 +21,10 @@ class SessionJoinManager {
         }
     }
     
+    func dummyverifySession(sessionCode: String, pass: String, name: String) -> Bool {
+        return true
+    }
+    
     // MUST EDIT HERE
     func verifySession(sessionCode: String, pass: String, name: String) -> Bool {
         let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
@@ -42,6 +46,6 @@ class SessionJoinManager {
     
     // MUST EDIT HERE
     func getSessionURL(sessionCode: String, pass: String) -> String {
-        return "https://www.google.com"
+        return "https://docs.google.com/forms/d/e/1FAIpQLSd7kImJ6H3wqdHWYEssvSnDacKJkNNK2-JGhX2I6zSsY8I_5w/viewform?vc=0&c=0&w=1&usp=mail_form_link"
     }
 }
