@@ -30,6 +30,7 @@ class ViewController: NSViewController {
         if Outlet_TextField_JoinPassword.stringValue.count > 0 && Outlet_TextField_SessionCode.stringValue.count > 0 && Outlet_TextField_Name.stringValue.count > 0 {
             Outlet_StandardText_StatusNotifier.stringValue = "Validating..."
             Outlet_TextField_SessionCode.isEnabled = false
+            Outlet_TextField_Name.isEnabled = false
             Outlet_TextField_JoinPassword.isEnabled = false
             DispatchQueue.main.async {
                 let SessionValidation: SessionJoinManager = SessionJoinManager()
@@ -43,6 +44,7 @@ class ViewController: NSViewController {
                     self.Outlet_StandardText_StatusNotifier.textColor = .red
                     self.Outlet_TextField_SessionCode.isEnabled = true
                     self.Outlet_TextField_JoinPassword.isEnabled = true
+                    self.Outlet_TextField_Name.isEnabled = true
                 }
             }
         }else{
