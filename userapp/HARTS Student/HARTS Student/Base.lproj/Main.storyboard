@@ -4,7 +4,6 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17132"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="17132"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -137,7 +136,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-Dx-JpC">
-                                <rect key="frame" x="251" y="249" width="154" height="21"/>
+                                <rect key="frame" x="251" y="249" width="76" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Your Question" drawsBackground="YES" id="UZY-Dv-lBa">
                                     <font key="font" metaFont="system"/>
@@ -155,7 +154,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
-                                <color key="contentTintColor" name="AccentColor"/>
+                                <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
                                     <action selector="Action_Button_OnRefreshButtonPressed:" target="XfG-lQ-9wD" id="rvE-c0-acE"/>
                                 </connections>
@@ -172,8 +171,29 @@
                                     <action selector="Action_TextField_OnUsernameFieldUpdate:" target="XfG-lQ-9wD" id="8cW-oz-OIq"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i9x-Kx-0uz">
+                                <rect key="frame" x="329" y="250" width="73" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="bevel" title="Hide" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="pQI-ua-Vgi">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="Action_Button_OnHideButtonPressed:" target="XfG-lQ-9wD" id="dX2-G2-WTf"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ib3-Ws-GTb">
+                                <rect key="frame" x="38" y="161" width="417" height="69"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="fds" id="9eE-rY-gtd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xAd-Qo-d62">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="250"/>
+                                <rect key="frame" x="1" y="0.0" width="480" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -185,9 +205,11 @@
                     <connections>
                         <outlet property="Outlet_Button_AskQuestion" destination="GvH-gV-as3" id="N4L-EK-UsC"/>
                         <outlet property="Outlet_Button_BeginTest" destination="CqW-tN-Xhh" id="p9A-VV-vJb"/>
+                        <outlet property="Outlet_Button_Hide" destination="i9x-Kx-0uz" id="fFi-w9-7L5"/>
                         <outlet property="Outlet_Button_Refresh" destination="6XZ-f9-yzP" id="KjH-9J-8A6"/>
                         <outlet property="Outlet_Button_TestDone" destination="S1c-Va-fhp" id="8GW-5S-3kL"/>
                         <outlet property="Outlet_StandardText_StatusNotifier" destination="i2G-cn-6qb" id="NJj-Zi-Kuw"/>
+                        <outlet property="Outlet_StandardText_WebViewIsHidden" destination="ib3-Ws-GTb" id="tj0-Es-hRL"/>
                         <outlet property="Outlet_TextField_JoinPassword" destination="AlU-O3-gdo" id="5vZ-tQ-7hm"/>
                         <outlet property="Outlet_TextField_Name" destination="Mx7-aP-0vE" id="2LK-Ca-ThR"/>
                         <outlet property="Outlet_TextField_Question" destination="fi8-Dx-JpC" id="IoC-sM-JVA"/>
@@ -200,9 +222,4 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="AccentColor">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

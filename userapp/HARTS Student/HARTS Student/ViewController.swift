@@ -15,7 +15,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var Outlet_Button_TestDone: NSButton!
     @IBOutlet weak var Outlet_Button_AskQuestion: NSButton!
     @IBOutlet weak var Outlet_TextField_Question: NSTextField!
+    @IBOutlet weak var Outlet_Button_Hide: NSButton!
     @IBOutlet weak var Outlet_Button_Refresh: NSButton!
+    @IBOutlet weak var Outlet_StandardText_WebViewIsHidden: NSTextField!
     
     @IBOutlet weak var Outlet_TextField_SessionCode: NSTextField!
     @IBOutlet weak var Outlet_TextField_Name: NSTextField!
@@ -28,6 +30,7 @@ class ViewController: NSViewController {
     
     private func validateSessionWhenTextFieldsAreUpdated() {
         if Outlet_TextField_JoinPassword.stringValue.count > 0 && Outlet_TextField_SessionCode.stringValue.count > 0 && Outlet_TextField_Name.stringValue.count > 0 {
+            Outlet_StandardText_StatusNotifier.textColor = .black
             Outlet_StandardText_StatusNotifier.stringValue = "Validating..."
             Outlet_TextField_SessionCode.isEnabled = false
             Outlet_TextField_Name.isEnabled = false
@@ -95,16 +98,20 @@ class ViewController: NSViewController {
         Outlet_TextField_Question.isHidden = isHidden
         Outlet_WebView.isHidden = isHidden
         Outlet_Button_Refresh.isHidden = isHidden
+        Outlet_Button_Hide.isHidden = isHidden
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NSSwiftUtils.executeShellScript("mkdir", "-p", "/tmp/HARTS")
         
         realTestScreen(isHidden: true)
         Outlet_Button_BeginTest.isHidden = true
         Outlet_TextField_SessionCode.isEnabled = true
         Outlet_TextField_JoinPassword.isEnabled = true
-        Outlet_Button_Refresh.isHidden = true
+        Outlet_StandardText_WebViewIsHidden.stringValue = "You currently hided test screen. \nPress Unhide button to resume test."
+        Outlet_StandardText_WebViewIsHidden.isHidden = true
     }
     
     func detectedOrtaShutdown() {
@@ -127,6 +134,18 @@ class ViewController: NSViewController {
                 NSSwiftUtils.executeShellScript("sleep", "3")
             }
             self.stopAsyncLoop = false
+        }
+    }
+    
+    @IBAction func Action_Button_OnHideButtonPressed(_ sender: Any) {
+        if Outlet_WebView.isHidden {
+            Outlet_WebView.isHidden = false
+            Outlet_StandardText_WebViewIsHidden.isHidden = true
+            Outlet_Button_Hide.title = "Hide"
+        }else{
+            Outlet_WebView.isHidden = true
+            Outlet_StandardText_WebViewIsHidden.isHidden = false
+            Outlet_Button_Hide.title = "Unhide"
         }
     }
     
