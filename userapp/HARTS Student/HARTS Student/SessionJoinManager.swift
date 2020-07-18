@@ -14,7 +14,7 @@ class SessionJoinManager {
     
     private func isSessionAccessible(URL: String) -> Bool {
         print("[*] Validating link...")
-        if NSSwiftUtils.executeShellScript("curl", "-Ls", URL) == 0{
+        if NSSwiftUtils.executeShellScript("curl", "-Ls", URL, "-o", "/dev/null") == 0{
             return true
         }else{
             return false
