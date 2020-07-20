@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Sync start."
+cd "$(dirname "$0")"
+rm -rf "$PWD/System"
+mkdir -p "$PWD/System"
+cp -r "$PWD/../src/" "$PWD/System/"
+rm -rf "$PWD/System/.git"
+rm -rf "$PWD/System/.gitattributes"
+rm -rf "$PWD/System/.gitignore"
+echo "Sync done."

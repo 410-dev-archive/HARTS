@@ -1,0 +1,10 @@
+EmulatePartition.init
+ClearCache.init
+EnforceReadOnly.init
+TDDefinitionLoader.init
+VersionSigning.init
+DeploymentChecksum.init
+DetectVM.init
+TDOSProfiler.init
+TDExtendedServiceLoader.init
+ClientFrontendStart.init
