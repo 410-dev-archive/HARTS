@@ -187,7 +187,10 @@ class ViewController: NSViewController {
     }
     
     @IBAction func Action_Button_OnRefreshButtonPressed(_ sender: Any) {
-        WebViewLoad(DestinationURL: TestURLInString)
+        let Graphics: GraphicComponents = GraphicComponents()
+        if Graphics.messageBox_ask(title: "Are you sure?", contents: "You may lose your test progress if you refresh the page.", firstButton: "Yes", secondButton: "No") {
+            WebViewLoad(DestinationURL: TestURLInString)
+        }
     }
 }
 
