@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "[*] Started TTY Interface."
 cd "$CACHE/def"
 for file in *.def
 do

@@ -5,10 +5,12 @@
 
 # Bootstage
 export BOOTREFUSE="$CACHE/init-boot-refuse"
+export BOOTREFUSE_CULPRIT="$NVDEV/orta-error"
 export BOOTARGS="$NVDEV/bootargs"
 
 # Runtime
 export PYTHONLIB="~/Library/HARTS/python3"
+export ORTA="$SYSTEM/Orta"
 
 # Teletype Interface
 export TTYIN="$CACHE/tty_in"
