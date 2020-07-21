@@ -1,0 +1,52 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+arg="-p"
+pth="$PWD/System"
+
+rm -f "./system.dmg" 2>/dev/null
+
+./syssync
+LIST=$(find "$pth" -name *.sh -depth)
+if [[ "$1" == "--no-compile" ]]; then
+	echo "Skipping compile stage..!"
+	echo "$LIST" | while read line
+	do
+		name=$(echo "$line" | cut -f 1 -d '.')
+		echo "RENAMING: $line"
+		chmod +x "$name.sh" 2>/dev/null
+		mv "$name.sh" "$name" 2>/dev/null
+	done
+else
+	echo "$LIST" | while read line
+	do
+		cd "$(dirname "$line")"
+		echo "PROCESSING: $line"
+		shc -r -f "$line" 2>/dev/null
+		gcc "$line.x.c" -o "$line"
+		name=$(echo "$line" | cut -f 1 -d '.')
+		mv "$name.sh" "$name" 2>/dev/null
+	done
+	find "$pth" -name *.sh.x.c -depth -exec rm {} \;
+fi
+
+LIST=$(find "$pth" -name *.sh -depth)
+echo "$LIST" | while read line
+do
+	name=$(echo "$line" | cut -f 1 -d '.')
+	chmod +x "$name.framework/exec.sh" 2>/dev/null
+	mv "$name.framework/exec.sh" "$name.framework/exec" 2>/dev/null
+done
+
+LIST=$(find "$pth" -name *.sh -depth)
+echo "$LIST" | while read line
+do
+	name=$(echo "$line" | cut -f 1 -d '.')
+	chmod +x "$name.init/exec.sh" 2>/dev/null
+	mv "$name.init/exec.sh" "$name.init/exec" 2>/dev/null
+done
+
+find "$pth" -name *.sh.x -depth -exec rm {} \;
+hdiutil create -volname System -srcfolder "./System" -ov -format UDRO ./system.dmg
+echo "Done."
