@@ -4,6 +4,7 @@
 # This is a partition location table file that bootloader reads to correclty locate the system and its file.
 # If this file is edited, the system may not load properly.
 
+export NVDEV="/tmp/HARTS"
 export ROOTFS="/tmp/HARTS/ortaos/vrootfs"
 
 export SYSTEM="$ROOTFS/System"
