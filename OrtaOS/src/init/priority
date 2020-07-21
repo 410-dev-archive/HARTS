@@ -1,6 +1,7 @@
 EmulatePartition.init
 ClearCache.init
 EnforceReadOnly.init
+ExtractFSWatchdylib.init
 TDDefinitionLoader.init
 VersionSigning.init
 DeploymentChecksum.init

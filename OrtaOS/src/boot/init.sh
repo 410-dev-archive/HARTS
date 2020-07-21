@@ -13,6 +13,10 @@ if [[ -f "$CACHE/bstop" ]]; then
 	rm -rf "$CACHE/Frameworks"
 	rm -rf "$CACHE/SIG"
 	rm -rf "$CACHE/" 2>/dev/null
+	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
+		rm -rf "/usr/local/Cellar/fswatch"
+		rm -f "/usr/local/Cellar/fswatchbyharts"
+	fi
 	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
 	rm -rf "$ROOTFS"
 	exit 9
@@ -33,6 +37,10 @@ if [[ ! -z "$(echo $b_arg | grep "verbose")" ]]; then
 	rm -rf "$CACHE/SIG"
 	echo "[*] Full-flushing cache..."
 	rm -rf "$CACHE/" 2>/dev/null
+	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
+		rm -rf "/usr/local/Cellar/fswatch"
+		rm -f "/usr/local/Cellar/fswatchbyharts"
+	fi
 	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
 	hdiutil detach "$SYSTEM/../venv" -quiet -force 2>/dev/null
 	echo "[*] Closing..."
@@ -42,6 +50,10 @@ else
 	rm -rf "$CACHE/Frameworks"
 	rm -rf "$CACHE/SIG"
 	rm -rf "$CACHE/" 2>/dev/null
+	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
+		rm -rf "/usr/local/Cellar/fswatch"
+		rm -f "/usr/local/Cellar/fswatchbyharts"
+	fi
 	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
 	hdiutil detach "$SYSTEM/../venv" -quiet -force 2>/dev/null
 	rm -rf "$ROOTFS"; exit 0
