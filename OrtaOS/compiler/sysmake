@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 arg="-p"
 pth="$PWD/System"
 
-rm -f "./system.dmg" 2>/dev/null
+rm -f "./venv.dmg" 2>/dev/null
 
 ./syssync
 LIST=$(find "$pth" -name *.sh -depth)
@@ -48,5 +48,26 @@ do
 done
 
 find "$pth" -name *.sh.x -depth -exec rm {} \;
-hdiutil create -volname System -srcfolder "./System" -ov -format UDRO ./system.dmg
+hdiutil create -volname System -srcfolder "./System" -ov -format UDRO ./venv.dmg >/dev/null
+mkdir -p venv
+mv ./venv.dmg ./venv/venv.dmg
+hdiutil create -volname venv -srcfolder "./venv" -ov -format UDRO ./venv.dmg >/dev/null
+
+mkdir -p /tmp/mnt1 /tmp/mnt2
+hdiutil attach ./venv.dmg -mountpoint /tmp/mnt1 >/dev/null
+hdiutil attach /tmp/mnt1/venv.dmg -mountpoint /tmp/mnt2 >/dev/null
+
+echo -n "OrtaOS SHASUM: "
+export parseShasum=($(shasum -a 512 /tmp/mnt1/venv.dmg))
+echo "${parseShasum[0]}"
+
+echo -n "Payload SHASUM: "
+export parseShasum=($(shasum -a 512 /tmp/mnt2/Orta/payload.zip))
+echo "${parseShasum[0]}"
+
+hdiutil detach /tmp/mnt2 -force >/dev/null
+hdiutil detach /tmp/mnt1 -force >/dev/null
+
+rm -rf venv
+rm -rf "$pth"
 echo "Done."
