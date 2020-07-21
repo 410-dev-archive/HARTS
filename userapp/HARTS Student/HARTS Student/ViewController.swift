@@ -41,6 +41,8 @@ class ViewController: NSViewController {
                     self.Outlet_Button_BeginTest.isHidden = false
                     self.Outlet_StandardText_StatusNotifier.stringValue = "Session is valid."
                     self.Outlet_StandardText_StatusNotifier.textColor = .green
+                    let Graphics: GraphicComponents = GraphicComponents()
+                    Graphics.messageBox_dialogue(title: "Resize Window", contents: "Please press the green button on the title bar to maximize the window. Otherwise you may have trouble taking the test, because the contents may seem too small.")
                 }else{
                     self.Outlet_Button_BeginTest.isHidden = true
                     self.Outlet_StandardText_StatusNotifier.stringValue = "Invalid. Please try again."
@@ -69,6 +71,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func Action_Button_OnJoinButtonPressed(_ sender: Any) {
+        let Orta: OrtaOSController = OrtaOSController()
+        if !Orta.push("test_start") {
+            let Graphics: GraphicComponents = GraphicComponents()
+            Graphics.messageBox_errorMessage(title: "Unable to start", contents: "Failed starting lockdown procedure. Please try again later.")
+            let _ = Orta.push("shutdown")
+            exit(0)
+        }
         Outlet_TextField_SessionCode.isHidden = true
         Outlet_TextField_JoinPassword.isHidden = true
         Outlet_Button_BeginTest.isHidden = true
@@ -130,7 +139,6 @@ class ViewController: NSViewController {
                 if NSSwiftUtils.readContents(of: "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/teletype_input").contains("test_done"){
                     self.detectedOrtaShutdown()
                 }
-                
                 NSSwiftUtils.executeShellScript("sleep", "3")
             }
             self.stopAsyncLoop = false

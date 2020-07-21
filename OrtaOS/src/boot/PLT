@@ -1,0 +1,11 @@
+#!/bin/bash
+export ROOTFS="/tmp/HARTS/ortaos/vrootfs"
+export SYSTEM="$ROOTFS/System"
+export BOOTSECT="$SYSTEM/boot"
+export SBIN="$SYSTEM/sbin"
+export EMU="$ROOTFS/emulated_corestorage"
+export DATA="$EMU/emulated0"
+export USERDATA="$DATA/emulated_userdata"
+export CACHE="$DATA/emulated_cache"
+export MULTIPLEX="$DATA/emulated_multiplex"
+export ORTALIB="$SYSTEM/Orta"

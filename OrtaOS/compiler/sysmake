@@ -1,0 +1,73 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"
+
+arg="-p"
+pth="$PWD/System"
+
+rm -f "./venv.dmg" 2>/dev/null
+
+./syssync
+LIST=$(find "$pth" -name *.sh -depth)
+if [[ "$1" == "--no-compile" ]]; then
+	echo "Skipping compile stage..!"
+	echo "$LIST" | while read line
+	do
+		name=$(echo "$line" | cut -f 1 -d '.')
+		echo "RENAMING: $line"
+		chmod +x "$name.sh" 2>/dev/null
+		mv "$name.sh" "$name" 2>/dev/null
+	done
+else
+	echo "$LIST" | while read line
+	do
+		cd "$(dirname "$line")"
+		echo "PROCESSING: $line"
+		shc -r -f "$line" 2>/dev/null
+		gcc "$line.x.c" -o "$line"
+		name=$(echo "$line" | cut -f 1 -d '.')
+		mv "$name.sh" "$name" 2>/dev/null
+	done
+	find "$pth" -name *.sh.x.c -depth -exec rm {} \;
+fi
+
+LIST=$(find "$pth" -name *.sh -depth)
+echo "$LIST" | while read line
+do
+	name=$(echo "$line" | cut -f 1 -d '.')
+	chmod +x "$name.framework/exec.sh" 2>/dev/null
+	mv "$name.framework/exec.sh" "$name.framework/exec" 2>/dev/null
+done
+
+LIST=$(find "$pth" -name *.sh -depth)
+echo "$LIST" | while read line
+do
+	name=$(echo "$line" | cut -f 1 -d '.')
+	chmod +x "$name.init/exec.sh" 2>/dev/null
+	mv "$name.init/exec.sh" "$name.init/exec" 2>/dev/null
+done
+
+find "$pth" -name *.sh.x -depth -exec rm {} \;
+hdiutil create -volname System -srcfolder "./System" -ov -format UDRO ./venv.dmg >/dev/null
+mkdir -p venv
+mv ./venv.dmg ./venv/venv.dmg
+hdiutil create -volname venv -srcfolder "./venv" -ov -format UDRO ./venv.dmg >/dev/null
+
+mkdir -p /tmp/mnt1 /tmp/mnt2
+hdiutil attach ./venv.dmg -mountpoint /tmp/mnt1 >/dev/null
+hdiutil attach /tmp/mnt1/venv.dmg -mountpoint /tmp/mnt2 >/dev/null
+
+echo -n "OrtaOS SHASUM: "
+export parseShasum=($(shasum -a 512 /tmp/mnt1/venv.dmg))
+echo "${parseShasum[0]}"
+
+echo -n "Payload SHASUM: "
+export parseShasum=($(shasum -a 512 /tmp/mnt2/Orta/payload.zip))
+echo "${parseShasum[0]}"
+
+hdiutil detach /tmp/mnt2 -force >/dev/null
+hdiutil detach /tmp/mnt1 -force >/dev/null
+
+rm -rf venv
+rm -rf "$pth"
+echo "Done."
