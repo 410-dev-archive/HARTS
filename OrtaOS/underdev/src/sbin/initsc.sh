@@ -28,11 +28,8 @@ while [[ true ]]; do
 				echo "[*] Loading $ID..."
 				mkdir -p "$cached/$ID"
 				cd $ROOTFS
-				echo "[$(date +"%Y-%m-%d %H:%M")] RUN: $ID" >> "$Data/INIT_$logDate.tlog"
-				"$sys/$SelectedFramework"/exec "$sys/$SelectedFramework" "$cached/$ID" | tee -a "$Data/INIT_$logDate.tlog"
+				"$sys/$SelectedFramework"/exec "$sys/$SelectedFramework" "$cached/$ID"
 				ec=$?
-				echo "END: $ID" >> "$Data/INIT_$logDate.tlog"
-				echo "EXIT: $ec" >> "$Data/INIT_$logDate.tlog"
 				if [[ $ec == 0 ]]; then
 					echo "[*] Load complete."
 				else
