@@ -1,2 +1,15 @@
 #!/bin/bash
 # Assigned global variables for files
+
+# OrtaOS Accessible variables
+
+# Bootstage
+export BOOTREFUSE="$CACHE/init-boot-refuse"
+export BOOTARGS="$NVDEV/bootargs"
+
+# Runtime
+export PYTHONLIB="~/Library/HARTS/python3"
+
+# Teletype Interface
+export TTYIN="$CACHE/tty_in"
+export TTYOUT="$CACHE/tty_out"
