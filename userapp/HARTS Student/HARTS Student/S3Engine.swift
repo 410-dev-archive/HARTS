@@ -8,14 +8,13 @@
 import Foundation
 class OrtaOSController {
     
-    let cache = "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/"
+    let cache = "/tmp/HARTS/ortaos/vrootfs/emulated/0/"
     
     func push(_ ttycmd: String) -> Bool {
-        if NSSwiftUtils.doesTheFileExist(at: cache + "teletype_input") {
-            NSSwiftUtils.executeShellScript("rm", "-f", cache + "teletype_input")
+        if NSSwiftUtils.doesTheFileExist(at: cache + "tty_in") {
+            NSSwiftUtils.executeShellScript("rm", "-f", cache + "tty_in")
         }
-        NSSwiftUtils.writeData(to: cache + "teletype_input", content: ttycmd)
-        if pull().contains(ttycmd){
+        if NSSwiftUtils.pipeCommandline(primaryCommand: "echo#" + ttycmd, execCommands: "tee#" + cache + "tty_in") == 0 {
             return true
         }else{
             return false
@@ -23,15 +22,10 @@ class OrtaOSController {
     }
     
     func pull() -> String {
-        return NSSwiftUtils.readContents(of: cache + "teletype_output")
+        return NSSwiftUtils.readContents(of: cache + "tty_out")
     }
     
     func writeLongArguments(str: String) -> Bool {
-        NSSwiftUtils.writeData(to: cache + "teletype_longarg", content: str)
-        if NSSwiftUtils.readContents(of: cache + "teletype_longarg").contains(str){
-            return true
-        }else{
-            return false
-        }
+        return NSSwiftUtils.writeData(to: cache + "tty_longarg", content: str)
     }
 }

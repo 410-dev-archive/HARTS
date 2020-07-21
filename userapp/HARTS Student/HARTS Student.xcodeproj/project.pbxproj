@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C30FA64124C1410700010A0A /* support in Resources */ = {isa = PBXBuildFile; fileRef = C30FA64024C1410700010A0A /* support */; };
-		C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35A7CFB24C012880065544F /* AES256CBC.swift */; };
 		C35F834F24C0267100A7BE78 /* S3Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35F834E24C0267100A7BE78 /* S3Engine.swift */; };
 		C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */; };
 		C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C32824BFEB92002B4F32 /* ViewController.swift */; };
@@ -16,7 +15,7 @@
 		C3C6C32E24BFEB93002B4F32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C6C32C24BFEB93002B4F32 /* Main.storyboard */; };
 		C3C6C33A24BFEB93002B4F32 /* HARTS_StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C33924BFEB93002B4F32 /* HARTS_StudentTests.swift */; };
 		C3C6C34524BFEB93002B4F32 /* HARTS_StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */; };
-		C3C6C35324BFEDC6002B4F32 /* SessionJoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */; };
+		C3C6C35324BFEDC6002B4F32 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */; };
 		C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */; };
 		C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */; };
 		C3F4304F24C01910003EB70B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F4304E24C01910003EB70B /* WebKit.framework */; };
@@ -53,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		C30FA64024C1410700010A0A /* support */ = {isa = PBXFileReference; lastKnownFileType = folder; path = support; sourceTree = "<group>"; };
-		C35A7CFB24C012880065544F /* AES256CBC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AES256CBC.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/AES256CBC.swift"; sourceTree = "<group>"; };
 		C35F834E24C0267100A7BE78 /* S3Engine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Engine.swift; sourceTree = "<group>"; };
 		C3C6C32324BFEB92002B4F32 /* HARTS Student.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HARTS Student.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +66,7 @@
 		C3C6C34024BFEB93002B4F32 /* HARTS StudentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HARTS StudentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARTS_StudentUITests.swift; sourceTree = "<group>"; };
 		C3C6C34624BFEB93002B4F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionJoinManager.swift; sourceTree = "<group>"; };
+		C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSStaticSwiftUtils.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/NSStaticSwiftUtils.swift"; sourceTree = "<group>"; };
 		C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicComponents.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/GraphicComponents.swift"; sourceTree = "<group>"; };
 		C3F4304E24C01910003EB70B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -133,12 +131,11 @@
 		C3C6C32524BFEB92002B4F32 /* HARTS Student */ = {
 			isa = PBXGroup;
 			children = (
-				C35A7CFB24C012880065544F /* AES256CBC.swift */,
 				C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */,
 				C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */,
 				C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */,
 				C3C6C32824BFEB92002B4F32 /* ViewController.swift */,
-				C3C6C35224BFEDC6002B4F32 /* SessionJoinManager.swift */,
+				C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */,
 				C35F834E24C0267100A7BE78 /* S3Engine.swift */,
 				C3C6C32A24BFEB93002B4F32 /* Assets.xcassets */,
 				C3C6C32C24BFEB93002B4F32 /* Main.storyboard */,
@@ -297,12 +294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C6C35324BFEDC6002B4F32 /* SessionJoinManager.swift in Sources */,
+				C3C6C35324BFEDC6002B4F32 /* SessionManager.swift in Sources */,
 				C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */,
 				C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */,
 				C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */,
 				C35F834F24C0267100A7BE78 /* S3Engine.swift in Sources */,
-				C35A7CFC24C012880065544F /* AES256CBC.swift in Sources */,
 				C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,7 +469,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HARTS Student/HARTS_Student.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 79KAJRXRUR;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "HARTS Student/Info.plist";
@@ -497,7 +493,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HARTS Student/HARTS_Student.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 79KAJRXRUR;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "HARTS Student/Info.plist";

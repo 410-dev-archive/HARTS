@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "[*] Calculating SHA512..."
+export PAYLOAD_PATH="$ORTA/payload.zip"
+export checksum=($(shasum -a 512 "$PAYLOAD_PATH"))
+checksum=${checksum[0]}
+curl -Ls "https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/sgType1/payload512" -o "$CACHE/checksum"
+if [[ "$checksum" == "$(<$CACHE/checksum)" ]]; then
+	echo "[*] Checksum pass."
+	rm "$CACHE/checksum"
+elif [[ ! -z "$(echo $(<$BOOTARGS) | grep "NO_SIGNING")" ]]; then
+	echo "[*] Debug mode."
+else
+	echo "[-] Checksum does not match with expected checksum."
+	echo "[-] Expected: $checksum"
+	echo "Failed verifying client integrity." > "$BOOTREFUSE_CULPRIT"
+	touch "$BOOTREFUSE"
+fi
+exit 0

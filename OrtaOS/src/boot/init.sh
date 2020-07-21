@@ -1,36 +1,35 @@
 #!/bin/bash
-source "$(dirname "$0")/PLT"
-export b_arg="verbose enforce_cli $1 $2 $3 $4 $5 $6"
-"$SYSTEM/boot/splasher"
-"$SYSTEM/boot/osstart"
-cd "$CACHE/def"
-for file in *.def
-do
-	source "$file"
-done
-if [[ -f "$CACHE/bstop" ]]; then
-	"$SYSTEM/libexec/shutdown"
-	rm -rf "$CACHE/Frameworks"
-	rm -rf "$CACHE/SIG"
-	rm -rf "$CACHE/" 2>/dev/null
-	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
-		rm -rf "/usr/local/Cellar/fswatch"
-		rm -f "/usr/local/Cellar/fswatchbyharts"
+
+function beginningOfSystem() {
+	source "$(dirname "$0")/PLT"
+	source "$(dirname "$0")/ASSIGN"
+	b_arg="$(<$BOOTARGS) $b_arg"
+	"$SYSTEM/boot/splasher"
+	"$SYSTEM/boot/osstart"
+	if [[ -f "$BOOTREFUSE" ]]; then
+		rm -rf "$CACHE"
+		EOS
 	fi
-	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
-	rm -rf "$ROOTFS"
-	exit 9
-fi
-cd "$ROOTFS"
-while [[ true ]]; do
-	"$SYSTEM/sbin/interface"
-	if [[ -f "$CACHE/SIG/kernel_close" ]]; then
-		echo "[*] Kernel close signal detected."
-		echo "[*] Running self-destruction..."
-		break
-	fi
-done
-if [[ ! -z "$(echo $b_arg | grep "verbose")" ]]; then
+	cd "$CACHE/def"
+	for file in *.def
+	do
+		source "$file"
+	done
+}
+
+function EOS(){
+	echo "[*] Terminating background frameworks..."
+	echo "[*] Loading lists of alive frameworks..."
+	ALIVE=$(ps -ax | grep "$SYSTEM/frameworks[/]")
+	echo "[*] Currently $(echo "$ALIVE" | wc -l) frameworks are up and running."
+	echo "[*] Killing asyncronously..."
+	echo "$ALIVE" | while read proc
+	do
+		frpid=($proc)
+		kill -9 ${frpid[0]}
+		echo "[*] Killed PID: ${frpid[0]}"
+	done
+	echo "[*] Frameworks are closed."
 	echo "[*] Cleaning up frameworks cache..."
 	rm -rf "$CACHE/Frameworks"
 	echo "[*] Cleaning up signal cache..."
@@ -38,23 +37,18 @@ if [[ ! -z "$(echo $b_arg | grep "verbose")" ]]; then
 	echo "[*] Full-flushing cache..."
 	rm -rf "$CACHE/" 2>/dev/null
 	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
-		rm -rf "/usr/local/Cellar/fswatch"
-		rm -f "/usr/local/Cellar/fswatchbyharts"
+		rm -rf "/usr/local/Cellar/fswatch" "/usr/local/Cellar/fswatchbyharts"
 	fi
-	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
-	hdiutil detach "$SYSTEM/../venv" -quiet -force 2>/dev/null
+	rm -rf "$PYTHONLIB"
+	rm -rf ~/Library/HARTS
 	echo "[*] Closing..."
-	echo "[*] Goodbye from kernel!"
-	rm -rf "$ROOTFS"; exit 0
-else
-	rm -rf "$CACHE/Frameworks"
-	rm -rf "$CACHE/SIG"
-	rm -rf "$CACHE/" 2>/dev/null
-	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
-		rm -rf "/usr/local/Cellar/fswatch"
-		rm -f "/usr/local/Cellar/fswatchbyharts"
-	fi
-	hdiutil detach "$SYSTEM" -quiet -force 2>/dev/null
-	hdiutil detach "$SYSTEM/../venv" -quiet -force 2>/dev/null
-	rm -rf "$ROOTFS"; exit 0
-fi
+	hdiutil detach "$SYSTEM" -force >/dev/null; hdiutil detach "$NVDEV/ortaos/venv" -force >/dev/null; rm -rf "$NVDEV"; echo "[*] Bye!"; exit 0
+}
+
+export -f EOS
+export b_arg="verbose enforce_cli $1 $2 $3"
+
+beginningOfSystem
+cd "$ROOTFS"
+"$SYSTEM/sbin/interface"
+EOS
