@@ -29,6 +29,16 @@ class ViewController: NSViewController {
                 System.writeData(to: "/tmp/HARTS/ortaos/bootarg", content: "NO_SIGNING")
             }
             System.executeShellScript(Bundle.main.resourcePath! + "/async-start", "/tmp/HARTS/ortaos/vrootfs/System/boot/init")
+            while true {
+                if System.doesTheFileExist(at: "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/bootdone") {
+                    break
+                }else if System.doesTheFileExist(at: "/tmp/HARTS/orta-error"){
+                    print("ERROR while starting OrtaOS: " + System.readContents(of: "/tmp/HARTS/orta-error"))
+                    let Graphics: GraphicComponents = GraphicComponents()
+                    Graphics.messageBox_errorMessage(title: "Runtime Error", contents: "Unable to start security layer.\nOutput from agent: \(System.readContents(of: "/tmp/HARTS/orta-error"))")
+                    System.removeDirectory(at: "/tmp/HARTS", ignoreSubContents: true)
+                }
+            }
             exit(0)
         }else{
             let Graphics: GraphicComponents = GraphicComponents()
