@@ -29,7 +29,7 @@ while [[ ! -f "$CACHE/SIG/shell_close" ]]; do
 		rm -f "$CACHE/SIG/shell_reload"
 		exit 0
 	fi
-	while [[ ! -f "$CACHE/teletype_input" ]] || [[ ! -f "$CACHE/SIG/shell_close" ]] ; do
+	while [[ ! -f "$CACHE/teletype_input" ]] && [[ ! -f "$CACHE/SIG/shell_close" ]] ; do
 		sleep 1
 		if [[ -f "~/Library/Orta/FileChanged.orta" ]]; then
 			echo "!!!!!SYSTEM MODIFICATION DETECTED!!!!!"
