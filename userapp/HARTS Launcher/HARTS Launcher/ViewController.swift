@@ -18,8 +18,10 @@ class ViewController: NSViewController {
         System.executeShellScript(Bundle.main.resourcePath! + "/shasum", "/tmp/HARTS/ortaos/venv/venv.dmg", "/tmp/HARTS/ortaos/thisshasum")
         System.executeShellScript("curl", "-Ls", "https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/sgType1/orta512", "-o", "/tmp/HARTS/ortaos/remoteshasum")
         let RemoteShasum = System.readContents(of: "/tmp/HARTS/ortaos/remoteshasum")
+        print("Remote Checksum: " + RemoteShasum)
         let LocalShasum = System.readContents(of: "/tmp/HARTS/ortaos/thisshasum").components(separatedBy: " ")[0]
         if RemoteShasum.elementsEqual(LocalShasum) {
+        print("Local Checksum: " + LocalShasum)
             System.executeShellScript("hdiutil", "attach", "/tmp/HARTS/ortaos/venv/venv.dmg", "-mountpoint", "/tmp/HARTS/ortaos/vrootfs/System")
             System.executeShellScript(Bundle.main.resourcePath! + "/async-start", "/tmp/HARTS/ortaos/vrootfs/System/boot/init")
             exit(0)
