@@ -11,6 +11,9 @@ class OrtaOSController {
     let cache = "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/"
     
     func push(_ ttycmd: String) -> Bool {
+        if NSSwiftUtils.doesTheFileExist(at: cache + "teletype_input") {
+            NSSwiftUtils.executeShellScript("rm", "-f", cache + "teletype_input")
+        }
         NSSwiftUtils.writeData(to: cache + "teletype_input", content: ttycmd)
         if pull().contains(ttycmd){
             return true
