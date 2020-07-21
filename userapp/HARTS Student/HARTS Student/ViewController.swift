@@ -121,9 +121,14 @@ class ViewController: NSViewController {
         Outlet_TextField_JoinPassword.isEnabled = true
         Outlet_StandardText_WebViewIsHidden.stringValue = "You currently hided test screen. \nPress Unhide button to resume test."
         Outlet_StandardText_WebViewIsHidden.isHidden = true
+        
+        if !NSSwiftUtils.doesTheFileExist(at: "/tmp/HARTS/ortaos/vrootfs/emulated/0") {
+            showError(title: "Invalid Launching", contents: "HARTS launched without proper security layer. Please use official launcher.")
+            exit(0)
+        }
     }
     
-    func asyncShowError(title: String, contents: String) {
+    func showError(title: String, contents: String) {
         let Graphics: GraphicComponents = GraphicComponents()
         Graphics.messageBox_errorMessage(title: title, contents: contents)
     }
@@ -132,9 +137,9 @@ class ViewController: NSViewController {
         let DetectionLoop = DispatchQueue(label: "ShutdownDetect")
         DetectionLoop.async {
             while !self.stopAsyncLoop {
-                if NSSwiftUtils.readContents(of: "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/teletype_input").contains("test_done"){
+                if NSSwiftUtils.readContents(of: "/tmp/HARTS/ortaos/vrootfs/emulated/0/tty_in").contains("test_done"){
                     // EDIT: REPORT TO PROCTOR SHOULD GO HERE
-                    self.asyncShowError(title: "Suspicious Access Detected", contents: "Security program detected a malicious access to unlock system lockdown. This will be automatically reported to proctor, and the test client will be terminated right now.")
+                    self.showError(title: "Suspicious Access Detected", contents: "Security program detected a malicious access to unlock system lockdown. This will be automatically reported to proctor, and the test client will be terminated right now.")
                     exit(0)
                 }
                 NSSwiftUtils.executeShellScript("sleep", "3")
