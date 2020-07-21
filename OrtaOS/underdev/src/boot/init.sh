@@ -41,7 +41,7 @@ function EOS(){
 	fi
 	rm -rf "$PYTHONLIB"
 	echo "[*] Closing..."
-	hdiutil detach "$SYSTEM" -force >/dev/null; exit 0
+	hdiutil detach "$SYSTEM" -force >/dev/null; hdiutil detach "$NVDEV/ortaos/venv" -force >/dev/null; rm -rf "$NVDEV"; echo "[*] Bye!"; exit 0
 }
 
 export -f EOS
