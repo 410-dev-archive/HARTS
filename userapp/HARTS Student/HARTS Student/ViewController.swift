@@ -27,6 +27,7 @@ class ViewController: NSViewController {
     
     var TestURLInString: String!
     var stopAsyncLoop = false
+    var isPythonDownloaded = false
     
     private func validateSessionWhenTextFieldsAreUpdated() {
         if Outlet_TextField_JoinPassword.stringValue.count > 0 && Outlet_TextField_SessionCode.stringValue.count > 0 && Outlet_TextField_Name.stringValue.count > 0 {
@@ -72,27 +73,52 @@ class ViewController: NSViewController {
     
     @IBAction func Action_Button_OnJoinButtonPressed(_ sender: Any) {
         let Orta: OrtaOSController = OrtaOSController()
-        if !Orta.push("test_start") {
+        if isPythonDownloaded {
+            if !Orta.push("test_start") {
+                let Graphics: GraphicComponents = GraphicComponents()
+                Graphics.messageBox_errorMessage(title: "Unable to start", contents: "Failed starting lockdown procedure. Please try again later.")
+                let _ = Orta.push("shutdown")
+                exit(0)
+            }
+            Outlet_TextField_SessionCode.isHidden = true
+            Outlet_TextField_JoinPassword.isHidden = true
+            Outlet_Button_BeginTest.isHidden = true
+            Outlet_StandardText_StatusNotifier.isHidden = true
+            Outlet_TextField_Name.isHidden = true
+            
+            Outlet_Button_AskQuestion.isEnabled = false
+            realTestScreen(isHidden: false)
+            let SessionManager: SessionJoinManager = SessionJoinManager()
+            TestURLInString = SessionManager.getSessionURL(sessionCode: Outlet_TextField_SessionCode.stringValue, pass: Outlet_TextField_JoinPassword.stringValue)
+            Outlet_WebView.allowsBackForwardNavigationGestures = false
+            Outlet_WebView.allowsLinkPreview = false
+            Outlet_WebView.allowsMagnification = true
+            WebViewLoad(DestinationURL: TestURLInString)
+            self.justInCaseOrtaReceivesShutDownCommand()
+        }else{
             let Graphics: GraphicComponents = GraphicComponents()
-            Graphics.messageBox_errorMessage(title: "Unable to start", contents: "Failed starting lockdown procedure. Please try again later.")
-            let _ = Orta.push("shutdown")
-            exit(0)
+            Graphics.messageBox_dialogue(title: "Please Wait", contents: "Runtime environment is still downloading. Please try again in several seconds later.")
         }
-        Outlet_TextField_SessionCode.isHidden = true
-        Outlet_TextField_JoinPassword.isHidden = true
-        Outlet_Button_BeginTest.isHidden = true
-        Outlet_StandardText_StatusNotifier.isHidden = true
-        Outlet_TextField_Name.isHidden = true
-        
-        Outlet_Button_AskQuestion.isEnabled = false
-        realTestScreen(isHidden: false)
-        let SessionManager: SessionJoinManager = SessionJoinManager()
-        TestURLInString = SessionManager.getSessionURL(sessionCode: Outlet_TextField_SessionCode.stringValue, pass: Outlet_TextField_JoinPassword.stringValue)
-        Outlet_WebView.allowsBackForwardNavigationGestures = false
-        Outlet_WebView.allowsLinkPreview = false
-        Outlet_WebView.allowsMagnification = true
-        WebViewLoad(DestinationURL: TestURLInString)
-        self.justInCaseOrtaReceivesShutDownCommand()
+    }
+    
+    func pyDownload() {
+        let DownloadAsync = DispatchQueue(label: "DownloadPythonEnv")
+        DownloadAsync.async {
+            let AppPath = NSSwiftUtils.getHomeDirectory() + "Library/Application Support/HARTS/"
+            if !NSSwiftUtils.doesTheFileExist(at: AppPath + "python3/Python3") {
+                if NSSwiftUtils.executeShellScript("curl", "-Ls", "", "-o", AppPath + "python3.zip") != 0 {
+                    self.asyncShowError(title: "Runtime Environment Error", contents: "Failed downloading Python runtime environment. Please check your internet connection, and try again later.")
+                    let OrtaController: OrtaOSController = OrtaOSController()
+                    let _ = OrtaController.push("test_done")
+                    exit(0)
+                }
+                NSSwiftUtils.createDirectoryWithParentsDirectories(to: AppPath + "python3")
+                NSSwiftUtils.executeShellScript("unzip", "-q", AppPath + "python3.zip", "-d", AppPath + "python3")
+                self.isPythonDownloaded = true
+            }else{
+                self.isPythonDownloaded = true
+            }
+        }
     }
     
     func WebViewLoad(DestinationURL: String) {
@@ -112,7 +138,9 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        pyDownload()
+        
         NSSwiftUtils.executeShellScript("mkdir", "-p", "/tmp/HARTS")
         
         realTestScreen(isHidden: true)
@@ -123,12 +151,10 @@ class ViewController: NSViewController {
         Outlet_StandardText_WebViewIsHidden.isHidden = true
     }
     
-    func detectedOrtaShutdown() {
-        // EDIT: REPORT TO PROCTOR SHOULD GO HERE
+    func asyncShowError(title: String, contents: String) {
         DispatchQueue.main.async {
             let Graphics: GraphicComponents = GraphicComponents()
-            Graphics.messageBox_errorMessage(title: "Suspicious Access Detected", contents: "Security program detected a malicious access to unlock system lockdown. This will be automatically reported to proctor, and the test client will be terminated right now.")
-            exit(0)
+            Graphics.messageBox_errorMessage(title: title, contents: contents)
         }
     }
     
@@ -137,7 +163,9 @@ class ViewController: NSViewController {
         DetectionLoop.async {
             while !self.stopAsyncLoop {
                 if NSSwiftUtils.readContents(of: "/tmp/HARTS/ortaos/vrootfs/emulated_corestorage/emulated0/emulated_cache/teletype_input").contains("test_done"){
-                    self.detectedOrtaShutdown()
+                    // EDIT: REPORT TO PROCTOR SHOULD GO HERE
+                    self.asyncShowError(title: "Suspicious Access Detected", contents: "Security program detected a malicious access to unlock system lockdown. This will be automatically reported to proctor, and the test client will be terminated right now.")
+                    exit(0)
                 }
                 NSSwiftUtils.executeShellScript("sleep", "3")
             }
