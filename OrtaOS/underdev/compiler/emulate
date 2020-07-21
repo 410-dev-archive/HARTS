@@ -1,5 +1,0 @@
-#!/bin/bash
-pth="/tmp/HARTS/ortaos/vrootfs/System"
-mkdir -p "$pth"
-hdiutil attach "$(dirname "$0")/system.dmg" -mountpoint "$pth"
-"$pth/boot/init" "$1" "$2" "$3" "$4"
