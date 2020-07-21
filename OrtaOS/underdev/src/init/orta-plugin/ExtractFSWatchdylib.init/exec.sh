@@ -5,9 +5,6 @@ if [[ ! -d "/usr/local/Cellar/fswatch/lib" ]]; then
 		osascript -e 'do shell script "mkdir -p /usr/local/Cellar; chown -R $(</tmp/uname) /usr/local/Cellar" with prompt "Runtime Extraction" with administrator privileges'
 	fi
 	mkdir -p "/usr/local/Cellar/fswatch"
-	unzip -q "$1/fswatch.zip" -d "/usr/local/Cellar/fswatch"
-	mv "/usr/local/Cellar/fswatch/fswatch" "/usr/local/Cellar/fswatch2"
-	rm -rf "/usr/local/Cellar/fswatch"
-	mv "/usr/local/Cellar/fswatch2" "/usr/local/Cellar/fswatch"
+	unzip -q "$1/fswatch.zip" -d "/usr/local/Cellar"
 	touch "/usr/local/Cellar/fswatchbyharts"
 fi
