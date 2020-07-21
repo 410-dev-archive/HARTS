@@ -26,7 +26,7 @@ class ViewController: NSViewController {
         if RemoteShasum.elementsEqual(LocalShasum) || CommandLine.arguments.joined().contains("debug") {
             System.executeShellScript("hdiutil", "attach", "/tmp/HARTS/ortaos/venv/venv.dmg", "-mountpoint", "/tmp/HARTS/ortaos/vrootfs/System")
             if CommandLine.arguments.joined().contains("debug") {
-                System.writeData(to: "/tmp/HARTS/ortaos/bootarg", content: "NO_SIGNING NO_VM_DETECTION")
+                System.writeData(to: "/tmp/HARTS/bootarg", content: "NO_SIGNING NO_VM_DETECTION")
             }
             System.executeShellScript(Bundle.main.resourcePath! + "/async-start", "/tmp/HARTS/ortaos/vrootfs/System/boot/init")
             while true {

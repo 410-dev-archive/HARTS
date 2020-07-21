@@ -11,7 +11,7 @@ function operatorBuild() {
 echo "[*] Checking remote signature..."
 echo "[*] Connecting to server..."
 export content="$(curl -Ls https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/sgType1/signed)"
-if [[ ! -z "$(echo $(</tmp/HARTS/ortaos/bootarg) | grep "NO_SIGNING")" ]]; then
+if [[ ! -z "$(echo $(</tmp/HARTS/bootarg) | grep "NO_SIGNING")" ]]; then
 	echo "[*] Debug."
 elif [[ -z "$(echo $content | grep "$(operatorVersion),")" ]]; then
 	echo "[-] Unsinged version."
@@ -22,7 +22,7 @@ elif [[ -z "$(echo $content | grep "$(operatorVersion),")" ]]; then
 else
 	echo "[*] This version ($(operatorVersion)) is signed by remote server."
 fi
-if [[ ! -z "$(echo $(</tmp/HARTS/ortaos/bootarg) | grep "NO_SIGNING")" ]]; then
+if [[ ! -z "$(echo $(</tmp/HARTS/bootarg) | grep "NO_SIGNING")" ]]; then
 	echo "[*] Debug."
 elif [[ -z "$(echo $content | grep "build=$(operatorBuild)")" ]] && [[ -z "$(echo $content | grep "build=all")" ]]; then
 	echo "[-] Unsigned Build."

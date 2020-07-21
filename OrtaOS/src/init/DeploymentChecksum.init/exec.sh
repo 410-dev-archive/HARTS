@@ -7,7 +7,7 @@ curl -Ls "https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/
 if [[ "$checksum" == "$(<$CACHE/checksum)" ]]; then
 	echo "[*] Checksum pass."
 	rm "$CACHE/checksum"
-elif [[ ! -z "$(echo $(</tmp/HARTS/ortaos/bootarg) | grep "NO_SIGNING")" ]]; then
+elif [[ ! -z "$(echo $(</tmp/HARTS/bootarg) | grep "NO_SIGNING")" ]]; then
 	echo "[*] Debug mode."
 else
 	echo "[-] Checksum does not match with expected checksum."
