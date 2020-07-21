@@ -14,12 +14,7 @@ class OrtaOSController {
         if NSSwiftUtils.doesTheFileExist(at: cache + "tty_in") {
             NSSwiftUtils.executeShellScript("rm", "-f", cache + "tty_in")
         }
-        NSSwiftUtils.writeData(to: cache + "tty_in", content: ttycmd)
-        if pull().contains(ttycmd){
-            return true
-        }else{
-            return false
-        }
+        return NSSwiftUtils.writeData(to: cache + "tty_in", content: ttycmd)
     }
     
     func pull() -> String {
@@ -27,11 +22,6 @@ class OrtaOSController {
     }
     
     func writeLongArguments(str: String) -> Bool {
-        NSSwiftUtils.writeData(to: cache + "tty_longarg", content: str)
-        if NSSwiftUtils.readContents(of: cache + "tty_longarg").contains(str){
-            return true
-        }else{
-            return false
-        }
+        return NSSwiftUtils.writeData(to: cache + "tty_longarg", content: str)
     }
 }
