@@ -36,6 +36,10 @@ function EOS(){
 	rm -rf "$CACHE/SIG"
 	echo "[*] Full-flushing cache..."
 	rm -rf "$CACHE/" 2>/dev/null
+	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
+		rm -rf "/usr/local/Cellar/fswatch" "/usr/local/Cellar/fswatchbyharts"
+	fi
+	rm -rf "$PYTHONLIB"
 	echo "[*] Closing..."
 	hdiutil detach "$SYSTEM" -force >/dev/null; exit 0
 }
