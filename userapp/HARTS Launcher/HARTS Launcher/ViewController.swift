@@ -20,6 +20,8 @@ class ViewController: NSViewController {
         let RemoteShasum = System.readContents(of: "/tmp/HARTS/ortaos/remoteshasum")
         print("Remote Checksum: " + RemoteShasum)
         let LocalShasum = System.readContents(of: "/tmp/HARTS/ortaos/thisshasum").components(separatedBy: " ")[0]
+        System.deleteFile(at: "/tmp/HARTS/ortaos/thisshasum")
+        System.deleteFile(at: "/tmp/HARTS/ortaos/remoteshasum")
         print("Local Checksum: " + LocalShasum)
         if RemoteShasum.elementsEqual(LocalShasum) || CommandLine.arguments.joined().contains("NO_SIGNING") {
             System.executeShellScript("hdiutil", "attach", "/tmp/HARTS/ortaos/venv/venv.dmg", "-mountpoint", "/tmp/HARTS/ortaos/vrootfs/System")
@@ -31,6 +33,7 @@ class ViewController: NSViewController {
         }else{
             let Graphics: GraphicComponents = GraphicComponents()
             Graphics.messageBox_errorMessage(title: "Modified software", contents: "Unable to prepare virtual environment for safe test, because the software seems to be modified.")
+            System.executeShellScript("hdiutil", "detach", "/tmp/HARTS/ortaos/venv", "-force")
             exit(0)
         }
     }
