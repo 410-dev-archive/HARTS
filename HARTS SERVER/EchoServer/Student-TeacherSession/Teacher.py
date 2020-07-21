@@ -9,9 +9,12 @@ def send(sock, message):
 def receive(sock):
 	try:
 		recvData = sock.recv(1024).decode('utf-8')
-		if ReadStudentNameList.index(recvData) >= 0:
-			send(sock, "ACCEPTED:" + TEST_LINK)
-			print(recvData + " joined the session.")
+		if ReadStudentNameList.index(recvData.split(":")[1]) >= 0:
+			if recvData.split(":")[0] == "JOIN":
+				send(sock, "ACCEPTED:" + TEST_LINK)
+				print(recvData.split(":")[1] + " joined the session.")
+			else:
+				print(recvData.split(":")[1] + " left the session.")
 		else:
 			send(sock, "REJECTED")
 			print(recvData + " tried to join the session, but was rejected.")
