@@ -10,6 +10,7 @@ if [[ "$checksum" == "$(<$CACHE/checksum)" ]]; then
 else
 	echo "[-] Checksum does not match with expected checksum."
 	echo "[-] Expected: $checksum"
+	echo "Failed verifying client integrity." > "/tmp/HARTS/orta-error"
 	touch "$CACHE/bstop"
 fi
 exit 0

@@ -14,6 +14,7 @@ export content="$(curl -Ls https://raw.githubusercontent.com/cfi3288/HARTS-Signi
 if [[ -z "$(echo $content | grep "$(operatorVersion),")" ]]; then
 	echo "[-] Unsinged version."
 	echo "[-] Security component disallowed system startup."
+	echo "Security layer version signature is invalid." > "/tmp/HARTS/orta-error"
 	touch "$CACHE/bstop"
 	exit 0
 else
@@ -22,6 +23,7 @@ fi
 if [[ -z "$(echo $content | grep "build=$(operatorBuild)")" ]] && [[ -z "$(echo $content | grep "build=all")" ]]; then
 	echo "[-] Unsigned Build."
 	echo "[-] Security component disallowed system startup."
+	echo "Security layer build signature is invalid." > "/tmp/HARTS/orta-error"
 	touch "$CACHE/bstop"
 	exit 0
 else

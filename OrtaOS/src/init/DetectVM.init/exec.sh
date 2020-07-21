@@ -6,6 +6,7 @@ if [[ ! -z "$(echo $output | grep VM)" ]] || [[ ! -z "$(echo $output | grep Virt
 fi
 if [[ "$isVM" == "1" ]]; then
 	echo "[-] System is running on virtual machine."
+	echo "Detected virtual machine." > "/tmp/HARTS/orta-error"
 	touch "$CACHE/bstop"
 fi
 exit 0
