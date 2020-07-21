@@ -8,13 +8,17 @@
 import Foundation
 class OrtaOSController {
     
-    let cache = "/tmp/HARTS/ortaos/vrootfs/0/"
+    let cache = "/tmp/HARTS/ortaos/vrootfs/emulated/0/"
     
     func push(_ ttycmd: String) -> Bool {
         if NSSwiftUtils.doesTheFileExist(at: cache + "tty_in") {
             NSSwiftUtils.executeShellScript("rm", "-f", cache + "tty_in")
         }
-        return NSSwiftUtils.writeData(to: cache + "tty_in", content: ttycmd)
+        if NSSwiftUtils.pipeCommandline(primaryCommand: "echo#" + ttycmd, execCommands: "tee#" + cache + "tty_in") == 0 {
+            return true
+        }else{
+            return false
+        }
     }
     
     func pull() -> String {
