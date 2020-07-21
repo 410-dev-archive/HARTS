@@ -40,6 +40,7 @@ function EOS(){
 		rm -rf "/usr/local/Cellar/fswatch" "/usr/local/Cellar/fswatchbyharts"
 	fi
 	rm -rf "$PYTHONLIB"
+	rm -rf ~/Library/HARTS
 	echo "[*] Closing..."
 	hdiutil detach "$SYSTEM" -force >/dev/null; hdiutil detach "$NVDEV/ortaos/venv" -force >/dev/null; rm -rf "$NVDEV"; echo "[*] Bye!"; exit 0
 }
