@@ -6,5 +6,6 @@ if [[ ! -d "/usr/local/Cellar/fswatch/lib" ]]; then
 	fi
 	mkdir -p "/usr/local/Cellar/fswatch"
 	unzip -q "$1/fswatch.zip" -d "/usr/local/Cellar"
+	rm -rf "/usr/local/Cellar/__MACOSX"
 	touch "/usr/local/Cellar/fswatchbyharts"
 fi
