@@ -2,6 +2,7 @@
 
 function beginningOfSystem() {
 	source "$(dirname "$0")/PLT"
+	source "$(dirname "$0")/ASSIGN"
 	if [[ ! -z "$(echo $b_arg | grep "reset_nvram")" ]]; then
 		rm -rf "$NVRAM"
 		cp -r "$TDLIB/defaults/nvram" "$LIB"
@@ -9,13 +10,8 @@ function beginningOfSystem() {
 		cp -r "$TDLIB/defaults/nvram" "$LIB"
 	fi
 	b_arg="$(<$NVRAM/boot_argument) $b_arg"
-	if [[ ! -z "$(echo $b_arg | grep "verbose")" ]]; then
-		"$SYSTEM/boot/osstart"
-	else
-		clear
-		"$SYSTEM/boot/splasher"
-		"$SYSTEM/boot/osstart" >/dev/null
-	fi
+	"$SYSTEM/boot/splasher"
+	"$SYSTEM/boot/osstart"
 	if [[ -f "$CACHE/upgraded" ]]; then
 		rm -rf "$CACHE/"*
 		if [[ ! -z "$(echo $b_arg | grep "bootergen2")" ]]; then
@@ -98,7 +94,7 @@ function realEndOfSystem(){
 	fi
 }
 
-export b_arg="$1 $2 $3 $4 $5 $6 $7 $8 $9"
+export b_arg="verbose enforce_cli $1 $2 $3"
 
 while [[ true ]]; do
 	beginningOfSystem

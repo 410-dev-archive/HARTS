@@ -4,11 +4,12 @@
 # This is a partition location table file that bootloader reads to correclty locate the system and its file.
 # If this file is edited, the system may not load properly.
 
-export ROOTFS="/Volumes/VFS"
+export ROOTFS="/tmp/HARTS/ortaos/vrootfs"
 
 export SYSTEM="$ROOTFS/System"
-export CACHE="$ROOTFS/cache"
-export DATA="$ROOTFS/Data"
+export EMUDISK="$ROOTFS/emulated"
+export CACHE="$EMUDISK/0"
+export DATA="$EMUDISK/1"
 
 export TDLIB="$SYSTEM/TouchDown"
 export BOOTSECT="$SYSTEM/boot"

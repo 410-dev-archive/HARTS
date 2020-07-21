@@ -11,6 +11,10 @@ if [[ -f "$CACHE/init-load-failed" ]]; then
 	echo "[!] Init returned non-zero exit code."
 	exit 0
 fi
+if [[ -f "$CACHE/init-bootrefuse" ]]; then
+	echo "[!] Init process refused to boot."
+	exit 0
+fi
 "$SYSTEM/sbin/frameworks-loader"
 if [[ -f "$CACHE/update-complete" ]]; then
 	echo "[*] Update complete."
