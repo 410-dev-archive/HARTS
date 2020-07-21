@@ -5,6 +5,11 @@ do
 	source "$file"
 done
 cd "$ROOTFS"
+if [[ -f "/tmp/HARTS/orta-error" ]]; then
+	exit 0
+fi
+echo "[*] Writing bootdone flag..."
+touch "$CACHE/bootdone"
 echo "[*] Started Local Teletype Interface."
 while [[ ! -f "$CACHE/SIG/shell_close" ]]; do
 	"$SYSTEM/sbin/interfacebulletin"
@@ -15,6 +20,14 @@ while [[ ! -f "$CACHE/SIG/shell_close" ]]; do
 			source "$file"
 		done
 		rm "$CACHE/SIG/defreload"
+	fi
+	if [[ -f "$CACHE/SIG/shell_close" ]]; then
+		echo "[*] Exiting..."
+		exit 0
+	elif [[ -f "$CACHE/SIG/shell_reload" ]]; then
+		echo "[*] Reloading shell..."
+		rm -f "$CACHE/SIG/shell_reload"
+		exit 0
 	fi
 	while [[ ! -f "$CACHE/teletype_input" ]] ; do
 		sleep 1
@@ -34,13 +47,5 @@ while [[ ! -f "$CACHE/SIG/shell_close" ]]; do
 		echo -n ""
 	else
 		echo "Command not found: ${args[0]}" > "$CACHE/teletype_output"
-	fi
-	if [[ -f "$CACHE/SIG/shell_close" ]]; then
-		echo "[*] Exiting..."
-		exit 0
-	elif [[ -f "$CACHE/SIG/shell_reload" ]]; then
-		echo "[*] Reloading shell..."
-		rm -f "$CACHE/SIG/shell_reload"
-		exit 0
 	fi
 done
