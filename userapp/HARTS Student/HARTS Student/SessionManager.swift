@@ -8,10 +8,6 @@
 import Foundation
 class SessionManager {
     
-    private func decryptSessionCodeWrittenInAES(sessionCode: String, pass: String) -> String? {
-        return AES256CBC.decryptString(sessionCode, password: pass)
-    }
-    
     private func isSessionAccessible(URL: String) -> Bool {
         print("[*] Validating link...")
         if NSSwiftUtils.executeShellScript("curl", "-Ls", URL, "-o", "/dev/null") == 0{
