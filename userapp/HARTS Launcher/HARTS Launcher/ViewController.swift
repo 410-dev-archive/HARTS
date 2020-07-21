@@ -36,7 +36,9 @@ class ViewController: NSViewController {
                     print("ERROR while starting OrtaOS: " + System.readContents(of: "/tmp/HARTS/orta-error"))
                     let Graphics: GraphicComponents = GraphicComponents()
                     Graphics.messageBox_errorMessage(title: "Runtime Error", contents: "Unable to start security layer.\nOutput from agent: \(System.readContents(of: "/tmp/HARTS/orta-error"))")
+                    System.executeShellScript("hdiutil", "detach", "/tmp/HARTS/ortaos/venv", "-force")
                     System.removeDirectory(at: "/tmp/HARTS", ignoreSubContents: true)
+                    break
                 }
             }
             exit(0)
