@@ -104,16 +104,17 @@ class ViewController: NSViewController {
     func pyDownload() {
         let DownloadAsync = DispatchQueue(label: "DownloadPythonEnv")
         DownloadAsync.async {
-            let AppPath = NSSwiftUtils.getHomeDirectory() + "Library/Application Support/HARTS/"
+            let AppPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/"
             if !NSSwiftUtils.doesTheFileExist(at: AppPath + "python3/Python3") {
-                if NSSwiftUtils.executeShellScript("curl", "-Ls", "", "-o", AppPath + "python3.zip") != 0 {
+                NSSwiftUtils.createDirectoryWithParentsDirectories(to: AppPath)
+                if NSSwiftUtils.executeShellScript("curl", "-L", "--progress-bar", "https://github.com/cfi3288/HARTS-Signing-Server/raw/master/resource/python.zip", "-o", AppPath + "python3.zip") != 0 {
                     self.asyncShowError(title: "Runtime Environment Error", contents: "Failed downloading Python runtime environment. Please check your internet connection, and try again later.")
                     let OrtaController: OrtaOSController = OrtaOSController()
                     let _ = OrtaController.push("test_done")
                     exit(0)
                 }
                 NSSwiftUtils.createDirectoryWithParentsDirectories(to: AppPath + "python3")
-                NSSwiftUtils.executeShellScript("unzip", "-q", AppPath + "python3.zip", "-d", AppPath + "python3")
+                NSSwiftUtils.executeShellScript("unzip", AppPath + "python3.zip", "-d", AppPath + "python3")
                 self.isPythonDownloaded = true
             }else{
                 self.isPythonDownloaded = true
@@ -152,10 +153,8 @@ class ViewController: NSViewController {
     }
     
     func asyncShowError(title: String, contents: String) {
-        DispatchQueue.main.async {
-            let Graphics: GraphicComponents = GraphicComponents()
-            Graphics.messageBox_errorMessage(title: title, contents: contents)
-        }
+        let Graphics: GraphicComponents = GraphicComponents()
+        Graphics.messageBox_errorMessage(title: title, contents: contents)
     }
     
     func justInCaseOrtaReceivesShutDownCommand() {

@@ -27,7 +27,7 @@ class SessionJoinManager {
     
     // MUST EDIT HERE
     func verifySession(sessionCode: String, pass: String, name: String) -> Bool {
-        let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/Application Support/HARTS/python3/"
+        let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/"
         let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
         print("[*] Getting IP for direct connection...")
         NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
