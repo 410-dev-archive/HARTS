@@ -39,6 +39,10 @@ while [[ true ]]; do
 					echo "[!] An error occured while loading $ID."
 					touch "$CACHE/init-load-failed"
 				fi
+				if [[ -f "$BOOTREFUSE" ]]; then
+					echo "[!] INIT REFUSED TO BOOT!"
+					break
+				fi
 			else
 				echo "[!] Not existing init file: $line"
 				echo "[!] Skipped."
