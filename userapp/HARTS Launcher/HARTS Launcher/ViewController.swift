@@ -20,9 +20,12 @@ class ViewController: NSViewController {
         let RemoteShasum = System.readContents(of: "/tmp/HARTS/ortaos/remoteshasum")
         print("Remote Checksum: " + RemoteShasum)
         let LocalShasum = System.readContents(of: "/tmp/HARTS/ortaos/thisshasum").components(separatedBy: " ")[0]
-        if RemoteShasum.elementsEqual(LocalShasum) {
         print("Local Checksum: " + LocalShasum)
+        if RemoteShasum.elementsEqual(LocalShasum) || CommandLine.arguments.joined().contains("NO_SIGNING") {
             System.executeShellScript("hdiutil", "attach", "/tmp/HARTS/ortaos/venv/venv.dmg", "-mountpoint", "/tmp/HARTS/ortaos/vrootfs/System")
+            if CommandLine.arguments.joined().contains("NO_SIGNING") {
+                System.writeData(to: "/tmp/HARTS/ortaos/bootarg", content: "NO_SIGNING")
+            }
             System.executeShellScript(Bundle.main.resourcePath! + "/async-start", "/tmp/HARTS/ortaos/vrootfs/System/boot/init")
             exit(0)
         }else{
