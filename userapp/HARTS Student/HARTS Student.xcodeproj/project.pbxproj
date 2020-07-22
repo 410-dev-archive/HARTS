@@ -16,9 +16,9 @@
 		C3C6C33A24BFEB93002B4F32 /* HARTS_StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C33924BFEB93002B4F32 /* HARTS_StudentTests.swift */; };
 		C3C6C34524BFEB93002B4F32 /* HARTS_StudentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */; };
 		C3C6C35324BFEDC6002B4F32 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */; };
-		C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */; };
-		C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */; };
 		C3F4304F24C01910003EB70B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F4304E24C01910003EB70B /* WebKit.framework */; };
+		C3F7803324C7C2CC00108F1B /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7803124C7C2CC00108F1B /* NSStaticSwiftUtils.swift */; };
+		C3F7803424C7C2CC00108F1B /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7803224C7C2CC00108F1B /* GraphicComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +67,9 @@
 		C3C6C34424BFEB93002B4F32 /* HARTS_StudentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARTS_StudentUITests.swift; sourceTree = "<group>"; };
 		C3C6C34624BFEB93002B4F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSStaticSwiftUtils.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/NSStaticSwiftUtils.swift"; sourceTree = "<group>"; };
-		C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicComponents.swift; path = "../../../../../macOS/Swift/Swift-CoreLevelCompatibilityLayer/GraphicComponents.swift"; sourceTree = "<group>"; };
 		C3F4304E24C01910003EB70B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C3F7803124C7C2CC00108F1B /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStaticSwiftUtils.swift; sourceTree = "<group>"; };
+		C3F7803224C7C2CC00108F1B /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,8 @@
 		C3C6C32524BFEB92002B4F32 /* HARTS Student */ = {
 			isa = PBXGroup;
 			children = (
-				C3C6C35824BFEE90002B4F32 /* GraphicComponents.swift */,
-				C3C6C35624BFEE90002B4F32 /* NSStaticSwiftUtils.swift */,
+				C3F7803224C7C2CC00108F1B /* GraphicComponents.swift */,
+				C3F7803124C7C2CC00108F1B /* NSStaticSwiftUtils.swift */,
 				C3C6C32624BFEB92002B4F32 /* AppDelegate.swift */,
 				C3C6C32824BFEB92002B4F32 /* ViewController.swift */,
 				C3C6C35224BFEDC6002B4F32 /* SessionManager.swift */,
@@ -296,10 +296,10 @@
 			files = (
 				C3C6C35324BFEDC6002B4F32 /* SessionManager.swift in Sources */,
 				C3C6C32924BFEB92002B4F32 /* ViewController.swift in Sources */,
-				C3C6C35924BFEE90002B4F32 /* NSStaticSwiftUtils.swift in Sources */,
-				C3C6C35B24BFEE90002B4F32 /* GraphicComponents.swift in Sources */,
 				C35F834F24C0267100A7BE78 /* S3Engine.swift in Sources */,
 				C3C6C32724BFEB92002B4F32 /* AppDelegate.swift in Sources */,
+				C3F7803424C7C2CC00108F1B /* GraphicComponents.swift in Sources */,
+				C3F7803324C7C2CC00108F1B /* NSStaticSwiftUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
