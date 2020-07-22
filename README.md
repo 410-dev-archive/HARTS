@@ -39,17 +39,17 @@ A secure lockdown browser for students to safely take test under COVID-19 pandem
 
 4. Type the following command to each windows
 
-   1. ```
+   ```
       curl -Ls "https://raw.githubusercontent.com/410-dev/HARTS/master/HARTS%20SERVER/EchoServer/Student-SessionMGR/Server.py?token=AN4ZYCW3IYX4PY62CE4DLKK7C6EIS" -o ./Server.py
       python3 ./Server.py
       ```
 
-   2. ```
+  ```
       curl -Ls "https://raw.githubusercontent.com/410-dev/HARTS/master/HARTS%20SERVER/EchoServer/Student-TeacherSession/Teacher.py?token=AN4ZYCTYMEMVP3JQXXOUP7K7C6D6S" -o ./Teacher.py
       python3 ./Teacher.py
       ```
 
-   3. ```
+   ```
       mkdir -p /tmp/HARTS; echo "NO_SIGNING NO_VM_DETECTION" > /tmp/HARTS/bootargs
       ~/Downloads/HARTS\ Launcher.app/Contents/MacOS/HARTS\ Launcher debug
       ```
