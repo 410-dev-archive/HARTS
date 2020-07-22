@@ -19,6 +19,7 @@ while [[ true ]]; do
 		echo "[OUT-START]" >> "$LIB/Logs/INTERFACE_$logSuffix.tlog"
 		"$SYSTEM/libexec/${args[0]}" "${args[1]}" "${args[2]}" "${args[3]}" "${args[4]}" "${args[5]}" "${args[6]}" "${args[7]}" "${args[8]}" "${args[9]}" "${args[10]}" "${args[11]}" "${args[12]}" | tee -a "$LIB/Logs/INTERFACE_$logSuffix.tlog" | tee "$TTYOUT"
 		echo "[OUT-END]" >> "$LIB/Logs/INTERFACE_$logSuffix.tlog"
+		rm -f "$TTYIN"
 	elif [[ -z "$command" ]]; then
 		echo -n ""
 	else
