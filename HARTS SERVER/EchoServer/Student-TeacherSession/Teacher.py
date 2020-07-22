@@ -1,6 +1,6 @@
 from socket import *
 
-ReadStudentNameList = ["John Appleseed", "Benjamin Willis", "Tom Choi", "Sherlock Holmes"]
+ReadStudentNameList = ["Benjamin Franklin", "Ivan Ko", "Sherlock Holmes"]
 TEST_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSd7kImJ6H3wqdHWYEssvSnDacKJkNNK2-JGhX2I6zSsY8I_5w/viewform?vc=0&c=0&w=1&usp=mail_form_link"
 
 def send(sock, message):
