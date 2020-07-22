@@ -184,6 +184,8 @@ class ViewController: NSViewController {
     }
     
     @IBAction func Action_Button_OnTestDoneButtonPressed(_ sender: Any) {
+        let SendLeavePacket: SessionManager = SessionManager()
+        SendLeavePacket.leaveSession(sessionCode: Outlet_TextField_SessionCode.stringValue, pass: Outlet_TextField_JoinPassword.stringValue, name: Outlet_TextField_Name.stringValue)
         let OrtaController: OrtaOSController = OrtaOSController()
         stopAsyncLoop = true
         while stopAsyncLoop {}
