@@ -17,6 +17,11 @@ function beginningOfSystem() {
 }
 
 function EOS(){
+	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
+		echo "$ASK_SUPERTOKEN" > "$ASK_SUPERUSER"
+		echo "rm -rf \"/usr/local/Cellar/fswatch\" \"/usr/local/Cellar/fswatchbyharts\"" >> "$CACHE/superlist"
+		sleep 5
+	fi
 	echo "[*] Terminating background frameworks..."
 	echo "[*] Loading lists of alive frameworks..."
 	ALIVE=$(ps -ax | grep "$SYSTEM/frameworks[/]")
@@ -28,6 +33,7 @@ function EOS(){
 		kill -9 ${frpid[0]}
 		echo "[*] Killed PID: ${frpid[0]}"
 	done
+	killall Python
 	echo "[*] Frameworks are closed."
 	echo "[*] Cleaning up frameworks cache..."
 	rm -rf "$CACHE/Frameworks"
@@ -35,9 +41,6 @@ function EOS(){
 	rm -rf "$CACHE/SIG"
 	echo "[*] Full-flushing cache..."
 	rm -rf "$CACHE/" 2>/dev/null
-	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
-		rm -rf "/usr/local/Cellar/fswatch" "/usr/local/Cellar/fswatchbyharts"
-	fi
 	rm -rf "$PYTHONLIB"
 	rm -rf ~/Library/HARTS
 	echo "[*] Closing..."
