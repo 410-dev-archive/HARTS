@@ -40,3 +40,5 @@ export ORTA="$SYSTEM/Orta"
 # Teletype Interface
 export TTYIN="$CACHE/tty_in"
 export TTYOUT="$CACHE/tty_out"
+export ASK_SUPERUSER="$CACHE/ask_superuser"
+export ASK_SUPERTOKEN=""
