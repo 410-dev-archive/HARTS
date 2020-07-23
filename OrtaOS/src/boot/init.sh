@@ -2,6 +2,7 @@
 
 function beginningOfSystem() {
 	source "$(dirname "$0")/PLT"
+	ASK_SUPERTOKEN="$(md5 -qs $(date))"
 	b_arg="$(<$BOOTARGS) $b_arg"
 	"$SYSTEM/boot/splasher"
 	"$SYSTEM/boot/osstart"
