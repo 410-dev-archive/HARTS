@@ -11,3 +11,4 @@ orta-plugin/DeploymentChecksum.init
 orta-plugin/ClientFrontendStart.init
 orta-plugin/ExtractPython.init
 orta-plugin/ExtractFSWatchdylib.init
+orta-plugin/ClearPasteboard.init
