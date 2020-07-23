@@ -11,14 +11,22 @@ if [[ -f "$CACHE/init-load-failed" ]]; then
 	echo "[!] Init returned non-zero exit code."
 	exit 0
 fi
-if [[ -f "$CACHE/init-bootrefuse" ]]; then
+if [[ -f "$BOOTREFUSE" ]]; then
 	echo "[!] Init process refused to boot."
 	exit 0
 fi
 "$SYSTEM/sbin/frameworks-loader"
-if [[ -f "$CACHE/update-complete" ]]; then
-	echo "[*] Update complete."
-	rm -f "$CACHE/update-complete"
+if [[ -f "$CACHE/framework-boot-refuse" ]]; then
+	echo "[!] Framwork refused to boot."
+	ALIVE=$(ps -ax | grep "$SYSTEM/frameworks[/]")
+	echo "$ALIVE" | while read proc
+	do
+		frpid=($proc)
+		kill -9 ${frpid[0]}
+		echo "[*] Killed: ${frpid[0]}"
+	done
+	touch "$BOOTREFUSE"
+	exit 0
 elif [[ -f "$CACHE/framework-load-failed" ]]; then
 	echo "[!] Framworks loader returned non-zero exit code."
 	ALIVE=$(ps -ax | grep "$SYSTEM/frameworks[/]")
