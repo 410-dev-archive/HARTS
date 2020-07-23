@@ -29,6 +29,7 @@ export NVRAM="$LIB/nvram"
 
 # Bootstage
 export BOOTREFUSE="$CACHE/init-boot-refuse"
+export FBOOTREFUSE="$CACHE/framework-boot-refuse"
 export BOOTREFUSE_CULPRIT="$NVDEV/orta-error"
 export BOOTARGS="$NVDEV/bootargs"
 
