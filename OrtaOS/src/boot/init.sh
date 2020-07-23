@@ -2,7 +2,6 @@
 
 function beginningOfSystem() {
 	source "$(dirname "$0")/PLT"
-	source "$(dirname "$0")/ASSIGN"
 	b_arg="$(<$BOOTARGS) $b_arg"
 	"$SYSTEM/boot/splasher"
 	"$SYSTEM/boot/osstart"
