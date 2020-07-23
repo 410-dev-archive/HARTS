@@ -1,9 +1,21 @@
 import keyboard
 import orta_ttyin
 
+"""
+if keyboard._darwinkeyboard.name_from_scancode == None:
+    pass
+
+keyboard._darwinkeyboard.KeyEventListener.handler
+
+if keyboard._darwinkeyboard.KeyEventListener.handler.key_
+if str(keyboard._pressed_events) == "{57: KeyboardEvent(caps lock down)":
+    keyboard._pressed_events.clear()
+print(keyboard._darwinkeyboard.name_from_scancode())
+"""
 
 def check_pressed_keys(a):
     for code in keyboard._pressed_events:
+        #print(keyboard._pressed_events)
         line = str(code)
         if 0 <= int(line) <= 51:
             continue
@@ -36,5 +48,5 @@ def check_pressed_keys(a):
             #orta_ttyin.pushCommand("fn")
         
 keyboard.on_press(check_pressed_keys)
-keyboard.wait()
+keyboard.wait() # forever loop
 
