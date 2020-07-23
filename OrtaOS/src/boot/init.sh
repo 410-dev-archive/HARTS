@@ -21,6 +21,7 @@ function EOS(){
 	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
 		echo "$ASK_SUPERTOKEN" > "$ASK_SUPERUSER"
 		echo "rm -rf \"/usr/local/Cellar/fswatch\" \"/usr/local/Cellar/fswatchbyharts\"" >> "$CACHE/superlist"
+		echo "killall Python" >> "$CACHE/superlist"
 		sleep 5
 	fi
 	echo "[*] Terminating background frameworks..."
