@@ -28,4 +28,13 @@ class OrtaOSController {
     func writeLongArguments(str: String) -> Bool {
         return NSSwiftUtils.writeData(to: cache + "tty_longarg", content: str)
     }
+    
+    func notifyUserWhenCommandEvent() {
+        DispatchQueue.global(qos: .background).async { [self] in
+            if NSSwiftUtils.doesTheFileExist(at: cache + "commandEvent") {
+                AppDelegate.showNotification(title: "Suspicious Key Event", subtitle: "Command key press detected.", informativeText: "You pressed " + NSSwiftUtils.readContents(of: cache + "commandEvent"))
+                NSSwiftUtils.executeShellScript("rm", "-f", cache + "commandEvent")
+            }
+        }
+    }
 }

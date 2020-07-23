@@ -91,6 +91,7 @@ class ViewController: NSViewController {
         Outlet_WebView.allowsBackForwardNavigationGestures = false
         Outlet_WebView.allowsLinkPreview = false
         Outlet_WebView.allowsMagnification = true
+        Orta.notifyUserWhenCommandEvent()
         WebViewLoad(DestinationURL: TestURLInString)
         self.justInCaseOrtaReceivesShutDownCommand()
     }

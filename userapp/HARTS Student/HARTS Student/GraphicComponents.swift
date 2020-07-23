@@ -8,6 +8,7 @@ import Foundation
 import Cocoa
 
 class GraphicComponents {
+    
     @discardableResult
     public func messageBox_errorMessage(title: String, contents: String) -> Bool {
         let alert = NSAlert()
