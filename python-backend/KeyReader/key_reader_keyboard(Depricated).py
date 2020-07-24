@@ -21,10 +21,9 @@ def check_pressed_keys(a):
             continue
         elif line == "55":
             print("cmd Pressed")
-            #orta_ttyin.pushCommand("cmd")
             if 8 in keyboard._pressed_events or 9 in keyboard._pressed_events: # cmd+c / cmd+v
                 print("No copy&pasting allowed.")
-                #orta_ttyin.pushCommand("copy/paste attempted")
+                orta_ttyin.pushCommand("commandkeyevent Copy&Paste")
         elif line == "61":
             print("L-option Pressed")
             #orta_ttyin.pushCommand("option")
