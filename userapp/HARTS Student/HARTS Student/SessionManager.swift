@@ -44,7 +44,7 @@ class SessionManager {
 //        print("[*] Getting IP for direct connection...")
 //        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
         print("[*] Getting Host for test...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/getTestHost.py", "LEAVE:" + name)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "LEAVE:" + name)
     }
     
     func getSessionURL(name: String) -> String {
