@@ -60,7 +60,7 @@ def receive(sock):
 				print(recvData.split(":")[1] + " tried to figure out the test URL.")
 				send(sock, "REJECT")
 
-		else
+		else:
 			print("Received unknown data: " + recvData)
 
 	except:

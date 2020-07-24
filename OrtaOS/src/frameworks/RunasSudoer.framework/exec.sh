@@ -1,5 +1,5 @@
 #!/bin/bash
-osascript -e 'do shell script "sudo /tmp/HARTS/vrootfs/System/frameworks/RunasSudoer.framework/allowRunningWithElevatedPrivilage" with prompt "Higher privilage is required to launch the framework." with administrator privileges'
+osascript -e 'do shell script "sudo /tmp/HARTS/ortaos/vrootfs/System/Orta/allowRunningWithElevatedPrivilage" with prompt "Higher privilage is required to launch the framework." with administrator privileges'
 if [[ $? == "0" ]]; then
 	exit 0
 else
