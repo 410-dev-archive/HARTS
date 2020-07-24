@@ -43,6 +43,9 @@ class ViewController: NSViewController {
                     NSSwiftUtils.executeShellScript("hdiutil", "detach", OrtaOS_ParentDMGMntPoint, "-force")
                     NSSwiftUtils.removeDirectory(at: ROOT, ignoreSubContents: true)
                     break
+                }else if NSSwiftUtils.doesTheFileExist(at: OrtaOS_Vrootfs + "/emulated/0/depinstall") {
+                    AppDelegate.showNotification(title: "Installing Packages", subtitle: "HARTS is installing dependency packages. This may take a while.", informativeText: "")
+                    NSSwiftUtils.executeShellScript("rm", "-f", OrtaOS_Vrootfs + "/emulated/0/depinstall")
                 }
             }
             exit(0)
