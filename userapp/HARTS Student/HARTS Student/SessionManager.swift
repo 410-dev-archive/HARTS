@@ -22,12 +22,12 @@ class SessionManager {
     }
     
     func verifySession(sessionCode: String, pass: String, name: String) -> Bool {
-        let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/"
+        let PyPath = "/usr/local/Cellar/python@3.8/python3.8.4/Frameworks/Python.framework/Versions/3.8/"
         let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
         print("[*] Getting IP for direct connection...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-master.py", Packet)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3.8", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-master.py", Packet)
         print("[*] Getting Host for test...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "JOIN:" + name)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3.8", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "JOIN:" + name)
         print("[*] Subprocess task complete.")
         let SessionURL = NSSwiftUtils.readContents(of: "/tmp/HARTS/testhost.harts")
         if  SessionURL.starts(with: "http"){
@@ -39,17 +39,17 @@ class SessionManager {
     }
     
     func leaveSession(sessionCode: String, pass: String, name: String) {
-        let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/"
+        let PyPath = "/usr/local/Cellar/python@3.8/python3.8.4/Frameworks/Python.framework/Versions/3.8/"
 //        let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
 //        print("[*] Getting IP for direct connection...")
-//        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
+//        NSSwiftUtils.executeShellScript(PyPath + "bin/python3.8", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
         print("[*] Getting Host for test...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "LEAVE:" + name)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3.8", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "LEAVE:" + name)
     }
     
     func getSessionURL(name: String) -> String {
         print("[*] Getting Host for session URL...")
-        NSSwiftUtils.executeShellScript(NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "ASK_URL:" + name)
+        NSSwiftUtils.executeShellScript("/usr/local/Cellar/python@3.8/python3.8.4/Frameworks/Python.framework/Versions/3.8/bin/python3.8", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "ASK_URL:" + name)
         print("[*] Subprocess task complete.")
         let SessionURL = NSSwiftUtils.readContents(of: "/tmp/HARTS/testhost.harts")
         if  SessionURL.starts(with: "http"){

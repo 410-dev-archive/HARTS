@@ -34,8 +34,8 @@ export BOOTREFUSE_CULPRIT="$NVDEV/orta-error"
 export BOOTARGS="$NVDEV/bootargs"
 
 # Runtime
-export PYTHONLIB=~/Library/HARTS/python3
-export PYTHON=~/Library/HARTS/python3/bin/python3
+export PYTHONLIB="/usr/local/Cellar/python@3.8"
+export PYTHON="/usr/local/Cellar/python@3.8/python3.8.4/Frameworks/Python.framework/Versions/3.8/bin/python3.8"
 export ORTA="$SYSTEM/Orta"
 
 # Teletype Interface
