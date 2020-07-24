@@ -2,7 +2,7 @@
 
 function beginningOfSystem() {
 	source "$(dirname "$0")/PLT"
-	ASK_SUPERTOKEN="$(md5 -qs $(date))"
+	ASK_SUPERTOKEN="$(md5 -qs "$(date)")"
 	b_arg="$(<$BOOTARGS) $b_arg"
 	"$SYSTEM/boot/splasher"
 	"$SYSTEM/boot/osstart"
@@ -42,6 +42,7 @@ function EOS(){
 		echo "[*] Killed PID: ${frpid[0]}"
 	done
 	killall Python
+	killall osascript
 	echo "[*] Frameworks are closed."
 	echo "[*] Cleaning up frameworks cache..."
 	rm -rf "$CACHE/Frameworks"
@@ -52,7 +53,7 @@ function EOS(){
 	rm -rf "$PYTHONLIB"
 	rm -rf ~/Library/HARTS
 	echo "[*] Closing..."
-	hdiutil detach "$SYSTEM" -force >/dev/null; hdiutil detach "$NVDEV/ortaos/venv" -force >/dev/null; rm -rf "$NVDEV"; echo "[*] Bye!"; exit 0
+	hdiutil detach "$SYSTEM" -force >/dev/null; hdiutil detach "$NVDEV/ortaos/venv" -force >/dev/null; rm -rf "$NVDEV"; echo "[*] Bye!"; killall bash; exit 0
 }
 
 export -f EOS
