@@ -40,9 +40,9 @@ class SessionManager {
     
     func leaveSession(sessionCode: String, pass: String, name: String) {
         let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/"
-        let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
-        print("[*] Getting IP for direct connection...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
+//        let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
+//        print("[*] Getting IP for direct connection...")
+//        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
         print("[*] Getting Host for test...")
         NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/getTestHost.py", "LEAVE:" + name)
     }
