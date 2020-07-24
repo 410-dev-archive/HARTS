@@ -88,7 +88,7 @@ class ViewController: NSViewController {
         Outlet_Button_AskQuestion.isEnabled = false
         realTestScreen(isHidden: false)
         let SessionMgr: SessionManager = SessionManager()
-        TestURLInString = SessionMgr.getSessionURL(sessionCode: Outlet_TextField_SessionCode.stringValue, pass: Outlet_TextField_JoinPassword.stringValue)
+        TestURLInString = SessionMgr.getSessionURL(name: Outlet_TextField_Name.stringValue)
         Outlet_WebView.allowsBackForwardNavigationGestures = false
         Outlet_WebView.allowsLinkPreview = false
         Outlet_WebView.allowsMagnification = true
