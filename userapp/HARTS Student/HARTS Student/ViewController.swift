@@ -41,6 +41,7 @@ class ViewController: NSViewController {
                     self.Outlet_Button_BeginTest.isHidden = false
                     self.Outlet_StandardText_StatusNotifier.stringValue = "Session is valid."
                     self.Outlet_StandardText_StatusNotifier.textColor = .green
+                    NSSwiftUtils.writeData(to: "/tmp/HARTS/ortaos/vrootfs/emulated/0/username", content: self.Outlet_TextField_Name.stringValue)
                     let Graphics: GraphicComponents = GraphicComponents()
                     Graphics.messageBox_dialogue(title: "Resize Window", contents: "Please press the green button on the title bar to maximize the window. Otherwise you may have trouble taking the test, because the contents may seem too small.")
                 }else{
