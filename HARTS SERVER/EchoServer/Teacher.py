@@ -1,6 +1,7 @@
 from socket import *
 
 ReadStudentNameList = ["Benjamin Franklin", "Ivan Ko", "Sherlock Holmes"]
+JoinedStudentList = []
 TEST_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSd7kImJ6H3wqdHWYEssvSnDacKJkNNK2-JGhX2I6zSsY8I_5w/viewform?vc=0&c=0&w=1&usp=mail_form_link"
 
 def send(sock, message):
@@ -16,6 +17,7 @@ def receive(sock):
 			# JOIN:NAME
 			if recvData.split(":")[1] in ReadStudentNameList: 
 				send(sock, "ACCEPTED:" + TEST_LINK)
+				JoinedStudentList.append(recvData.split(":")[1])
 				print(recvData.split(":")[1] + " joined the session.")
 			else:
 				send(sock, "REJECTED")
@@ -25,8 +27,13 @@ def receive(sock):
 
 			# On leave signal
 			# LEAVE:NAME
-			print(recvData.split(":")[1] + " left the session.")
-			send(sock, "OK")
+			if recvData.split(":")[1] in JoinedStudentList:
+				JoinedStudentList.pop(recvData.split(":")[1])
+				print(recvData.split(":")[1] + " left the session.")
+				send(sock, "OK")
+			else:
+				print(recvData.split(":")[1] + " tried to leave the session, but was not in session.")
+				send(sock, "REJECTED")
 
 		elif recvData.startswith("QUESTION"):
 
@@ -41,6 +48,17 @@ def receive(sock):
 			# KEYEVENT:NAME:PRESSED KEY
 			print("Detected " + recvData.split(":")[1] + "\'s suspicious keystroke: " + recvData.split(":")[2])
 			send(sock, "OK")
+
+		elif recvData.startswith("ASK_URL"):
+
+			# On url ask
+			# ASK_URL:NAME
+			if recvData.split(":")[1] in JoinedStudentList:
+				print(recvData.split(":")[1] + "'s client asked for test URL.")
+				send(sock, TEST_LINK)
+			else:
+				print(recvData.split(":")[1] + " tried to figure out the test URL.")
+				send(sock, "REJECT")
 
 		else
 			print("Received unknown data: " + recvData)
