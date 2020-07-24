@@ -1,4 +1,6 @@
-import time
+import sys # cache disable
+sys.dont_write_bytecode = True
+
 from pynput.keyboard import Key, Listener # $ pip3 install pynput
 import orta_ttyin
 
