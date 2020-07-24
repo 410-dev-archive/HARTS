@@ -18,10 +18,16 @@ function beginningOfSystem() {
 }
 
 function EOS(){
+	echo "$ASK_SUPERTOKEN" > "$ASK_SUPERUSER"
+	echo "killall Python" >> "$CACHE/superlist"
+	if [[ -f "/usr/local/Cellar/pythonbyharts" ]]; then
+		echo "$ASK_SUPERTOKEN" > "$ASK_SUPERUSER"
+		echo "rm -rf \"/usr/local/Cellar/python@3.8\" \"/usr/local/Cellar/pythonbyharts\"" >> "$CACHE/superlist"
+
+	fi
 	if [[ -f "/usr/local/Cellar/fswatchbyharts" ]]; then
 		echo "$ASK_SUPERTOKEN" > "$ASK_SUPERUSER"
 		echo "rm -rf \"/usr/local/Cellar/fswatch\" \"/usr/local/Cellar/fswatchbyharts\"" >> "$CACHE/superlist"
-		echo "killall Python" >> "$CACHE/superlist"
 		sleep 5
 	fi
 	echo "[*] Terminating background frameworks..."
