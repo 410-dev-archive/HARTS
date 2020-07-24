@@ -25,9 +25,9 @@ class SessionManager {
         let PyPath = NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/"
         let Packet = "ASK_ACCESS:\(sessionCode):\(pass)"
         print("[*] Getting IP for direct connection...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/connect-mastersv.py", Packet)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-master.py", Packet)
         print("[*] Getting Host for test...")
-        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/getTestHost.py", "JOIN:" + name)
+        NSSwiftUtils.executeShellScript(PyPath + "bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "JOIN:" + name)
         print("[*] Subprocess task complete.")
         let SessionURL = NSSwiftUtils.readContents(of: "/tmp/HARTS/testhost.harts")
         if  SessionURL.starts(with: "http"){
