@@ -7,6 +7,7 @@ TDRemoveFalseCopiedNVRAM.init
 orta-plugin/VersionSigning.init
 orta-plugin/EnforceReadOnly.init
 orta-plugin/DetectVM.init
+orta-plugin/RunasSudoers.init
 orta-plugin/DeploymentChecksum.init
 orta-plugin/ClientFrontendStart.init
 orta-plugin/ExtractPython.init
