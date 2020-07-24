@@ -47,9 +47,16 @@ class SessionManager {
         NSSwiftUtils.executeShellScript(PyPath + "bin/python3", Bundle.main.resourcePath! + "/support/getTestHost.py", "LEAVE:" + name)
     }
     
-    
-    // MUST EDIT HERE - HARDCODED URL!
-    func getSessionURL(sessionCode: String, pass: String) -> String {
-        return "https://docs.google.com/forms/d/e/1FAIpQLSd7kImJ6H3wqdHWYEssvSnDacKJkNNK2-JGhX2I6zSsY8I_5w/viewform?vc=0&c=0&w=1&usp=mail_form_link"
+    func getSessionURL(name: String) -> String {
+        print("[*] Getting Host for session URL...")
+        NSSwiftUtils.executeShellScript(NSSwiftUtils.getHomeDirectory() + "Library/HARTS/python3/bin/python3", "/tmp/HARTS/ortaos/vrootfs/System/Orta/server-host.py", "ASK_URL:" + name)
+        print("[*] Subprocess task complete.")
+        let SessionURL = NSSwiftUtils.readContents(of: "/tmp/HARTS/testhost.harts")
+        if  SessionURL.starts(with: "http"){
+            NSSwiftUtils.deleteFile(at: "/tmp/HARTS/testhost.harts")
+            return SessionURL
+        }else{
+            return ""
+        }
     }
 }
