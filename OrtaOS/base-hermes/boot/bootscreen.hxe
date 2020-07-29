@@ -1,8 +1,5 @@
 #!/bin/bash
-
-if [[ -f "$CORE/resources/bootscreen" ]]; then
-	cat "$CORE/resources/bootscreen"
-fi
+cat "$(dirname "$0")/bootcredit"
 if [[ -f "$CORE/resources/coreversion" ]]; then
 	echo -n "Starting Hermes Core - v."
 	cat "$CORE/resources/coreversion"
