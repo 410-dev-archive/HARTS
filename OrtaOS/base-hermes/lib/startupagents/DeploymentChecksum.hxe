@@ -4,7 +4,7 @@ export PAYLOAD_PATH="$ORTA/payload.zip"
 export checksum=($(shasum -a 512 "$PAYLOAD_PATH"))
 checksum=${checksum[0]}
 curl -Ls "https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/sgType1/payload512" -o "$CACHE/checksum"
-if [[ "$checksum" == "$(<$CACHE/checksum)" ]]; then
+if [[ ! -z "$(echo "$(<$CACHE/checksum)" | grep "$checksum")" ]]; then
 	echo "[*] Checksum pass."
 	rm "$CACHE/checksum"
 elif [[ ! -z "$(echo $(<$BOOTARGS) | grep "NO_CHECKSUM")" ]]; then
