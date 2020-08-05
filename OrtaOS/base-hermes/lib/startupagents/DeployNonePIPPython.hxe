@@ -1,0 +1,5 @@
+#!/bin/bash
+mkdir -p ~/Library/HARTS
+unzip -q "$ORTA/pre_python.zip" -d ~/Library/HARTS
+rm -rf ~/Library/HARTS/__MACOSX
+exit 0
