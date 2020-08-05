@@ -34,6 +34,7 @@ export BOOTARGS="$NVDEV/bootargs"
 # Runtime
 export PYTHONLIB="/usr/local/Cellar/python@3.8"
 export PYTHON="/usr/local/Cellar/python@3.8/python3.8.4/Frameworks/Python.framework/Versions/3.8/bin/python3.8"
+export PREPY=~/Library/HARTS/
 export ORTA="$OSSERVICES/Orta"
 
 # Teletype Interface
