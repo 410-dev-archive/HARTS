@@ -97,10 +97,40 @@ class ViewController: NSViewController {
         self.justInCaseOrtaReceivesShutDownCommand()
     }
     
+    func detectURLChange(DestinationURL: String) {
+        var Direction = DestinationURL
+        if Direction.hasPrefix("http") {
+            Direction = Direction.components(separatedBy: "/")[1]
+        }else{
+            Direction = Direction.components(separatedBy: "/")[0]
+        }
+        DispatchQueue.global().async { [self] in
+            while !stopAsyncLoop {
+                sleep(5)
+                if let currentURL = Outlet_WebView.url {
+                    if !currentURL.absoluteString.contains(Direction) {
+                        break
+                    }
+                }
+            }
+        }
+        if !stopAsyncLoop {
+            let Graphics: GraphicComponents = GraphicComponents()
+            Graphics.messageBox_errorMessage(title: "Suspected Cheating", contents: "You are trying to escape from assigned URL. Lockdown browser will be stay on hold status until proctor allows the redirection. If proctor doesn't allow to do so, you will be redirected to the first page.")
+            stayHoldUntilProctorAllowsRedirection()
+        }
+    }
+    
+    func stayHoldUntilProctorAllowsRedirection() {
+        
+    }
+    
     func WebViewLoad(DestinationURL: String) {
         let url = URL(string: DestinationURL)
         let request = URLRequest(url: url!)
+        Outlet_WebView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
         Outlet_WebView.load(request)
+        detectURLChange(DestinationURL: DestinationURL)
     }
 
     func realTestScreen(isHidden: Bool) {
