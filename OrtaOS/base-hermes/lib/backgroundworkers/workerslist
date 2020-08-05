@@ -1,4 +1,3 @@
-RunasSudoers.framework
-TerminateOnStudentEnd.framework
-DetectFSModify.framework
-InstallPythonDependency.framework
+TerminateOnStudentEnd.hxe
+DetectFSModify.hxe
+InstallPythonDependency.hxe
