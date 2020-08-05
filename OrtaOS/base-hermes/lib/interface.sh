@@ -5,11 +5,6 @@ if [[ ! -f "$BOOTREFUSE" ]]; then
 fi
 touch "$CACHE/bootdone"
 echo "[*] Started TTY Interface."
-cd "$CACHE/def"
-for file in *.def
-do
-	source "$file"
-done
 cd "$ROOTFS"
 while [[ true ]]; do
 	cd "$ROOTFS"
