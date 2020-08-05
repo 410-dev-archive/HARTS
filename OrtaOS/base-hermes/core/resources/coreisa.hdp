@@ -75,6 +75,7 @@ function core.endSystem() {
 			verbose "[*] Killed PID: ${frpid[0]}"
 		fi
 	done
+	fsudo "exit"
 	verbose "[*] System background workers are closed."
 
 	verbose "[*] Loading lists of core level backgroundworkers..."
