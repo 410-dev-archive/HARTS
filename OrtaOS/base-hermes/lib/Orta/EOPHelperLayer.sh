@@ -1,5 +1,6 @@
 #!/bin/bash
 source "/tmp/HARTS/ortaos/vrootfs/System/boot/PLT"
+touch "$CACHE/sudostart"
 
 # Extract FSWatch library
 if [[ ! -d "/usr/local/Cellar/fswatch" ]]; then
