@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ ! -f "$BOOTREFUSE" ]]; then
+if [[ -f "$BOOTREFUSE" ]]; then
 	"$SYSTEM/bin/terminate"
 	exit 0
 fi
