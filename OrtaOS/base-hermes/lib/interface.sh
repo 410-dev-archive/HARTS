@@ -1,5 +1,7 @@
 #!/bin/bash
 if [[ -f "$BOOTREFUSE" ]]; then
+	echo "[-] Detected boot refuse."
+	echo -n "[-] Culprit: $(cat "$BOOTREFUSE")"
 	"$SYSTEM/bin/terminate"
 	exit 0
 fi
