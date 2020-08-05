@@ -7,9 +7,9 @@ rm -rf "$PWD/System"
 mkdir -p "$PWD/System"
 clear
 if [[ "$base" == "1" ]]; then
-	cp -r "$PWD/base-touchdownos/" "$PWD/System/"
+	cp -r "$PWD/base-touchdownos/"* "$PWD/System/"
 else
-	cp -r "$PWD/base-hermes" "$PWD/System/"
+	cp -r "$PWD/base-hermes/"* "$PWD/System/"
 fi
 rm -rf "$PWD/System/.git"
 rm -rf "$PWD/System/.gitattributes"
