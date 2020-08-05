@@ -1,0 +1,5 @@
+#!/bin/bash
+mkdir -p "/tmp/libsudohooker"
+osascript -e 'do shell script "sudo /tmp/HARTS/ortaos/vrootfs/System/Orta/sudohooker --library /tmp/libsudohooker/ --killswitch /tmp/ks" with prompt "Higher privilage is required to launch the framework." with administrator privileges'
+sleep 4
+echo "/tmp/HARTS/ortaos/vrootfs/System/Orta/EOPHelperLayer" > "/tmp/libsudohooker/requests"
