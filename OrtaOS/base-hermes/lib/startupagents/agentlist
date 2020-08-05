@@ -1,7 +1,7 @@
-EmulatePartition.init
-VersionSigning.init
-EnforceReadOnly.init
-DetectVM.init
-DeploymentChecksum.init
-ClientFrontendStart.init
-ClearPasteboard.init
+EmulatePartition.hxe
+VersionSigning.hxe
+EnforceReadOnly.hxe
+DetectVM.hxe
+DeploymentChecksum.hxe
+ClientFrontendStart.hxe
+ClearPasteboard.hxe
