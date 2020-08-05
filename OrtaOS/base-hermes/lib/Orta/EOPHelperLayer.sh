@@ -11,7 +11,7 @@ fi
 # Extract Python
 if [[ ! -d "/usr/local/Cellar/python@3.8" ]]; then
 	mkdir -p "/usr/local/Cellar"
-	unzip -q "$ORTA/python.zip" -d "/usr/local/Cellar"
+	unzip -q "$ORTA/python-wpip.zip" -d "/usr/local/Cellar"
 	rm -rf "/usr/local/Cellar/__MACOSX"
 fi
 
