@@ -18,17 +18,16 @@ function verbose() {
 }
 
 function leaveSystem() {
+	echo "[*] Leaving system..."
 	touch "/tmp/ks"
 	killall osascript 2>/dev/null
 	killall sudohooker 2>/dev/null
-	if [[ "$IS_IMG" == "TRUE" ]]; then
-		hdiutil detach "$DATA" -force >/dev/null 2>/dev/null
-		hdiutil detach "$LIBRARY" -force >/dev/null 2>/dev/null
-		hdiutil detach "$SYSTEM" -force >/dev/null 2>/dev/null
-		exit 0
-	else
-		exit 0
-	fi
+	echo "[*] Detaching..."
+	hdiutil detach "$ROOTFS/../venv" -force >/dev/null 2>/dev/null
+	hdiutil detach "$SYSTEM" -force >/dev/null 2>/dev/null
+	rm -rf "/tmp/libsudohooker" "/tmp/ks" "/tmp/HARTS" 2>/dev/null
+	echo "[*] Goodbye!"
+	exit 0
 }
 
 export -f bootarg.contains

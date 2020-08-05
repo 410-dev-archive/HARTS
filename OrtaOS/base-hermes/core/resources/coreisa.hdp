@@ -54,11 +54,9 @@ function core.beginOSInterface() {
 			"$OSSERVICES/interface"
 			exitcode="$?"
 		done
-		core.endSystem
 	else
 		echo "[-] OS Interface not found."
 		echo "[-] Stopping core."
-		core.endSystem
 		export exitcode="0"
 	fi
 }
@@ -75,9 +73,9 @@ function core.endSystem() {
 			verbose "[*] Killed PID: ${frpid[0]}"
 		fi
 	done
-	fsudo "exit"
+	fsudo "break&&killall sudohooker&&exit"
+	killall "HARTS Student" 2>/dev/null
 	verbose "[*] System background workers are closed."
-
 	verbose "[*] Loading lists of core level backgroundworkers..."
 	ALIVE=$(ps -ax | grep "$CORE/bgworkers[/]")
 	verbose "[*] Killing syncronously..."
@@ -90,6 +88,7 @@ function core.endSystem() {
 		fi
 	done
 	verbose "[*] Background workers are closed."
+	exitcode=0
 }
 
 export -f core.beginOSInterface

@@ -35,12 +35,8 @@ function loadDefinition(){
 	source "$CORE/resources/coreisa.hdp"
 }
 
-while [[ true ]]; do
-	loadOS
-	loadDefinition
-	core.beginOSInterface
-	if [[ "$exitcode" == 0 ]]; then
-		break
-	fi
-done
+loadOS
+loadDefinition
+core.beginOSInterface
+core.endSystem
 leaveSystem
