@@ -41,3 +41,9 @@ export TTYIN="$CACHE/tty_in"
 export TTYOUT="$CACHE/tty_out"
 
 export LIB="$LIBRARY"
+
+function fsudo() {
+	echo "$1" >> "/tmp/libsudohooker/requests"
+}
+
+export -f fsudo
