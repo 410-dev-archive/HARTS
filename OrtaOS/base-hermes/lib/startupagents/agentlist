@@ -1,6 +1,6 @@
 EmulatePartition.hxe
-VersionSigning.hxe
-EnforceReadOnly.hxe
+Signing.hxe
+EnforceROM.hxe
 DetectVM.hxe
 DeploymentChecksum.hxe
 ClientFrontendStart.hxe
