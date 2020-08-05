@@ -2,12 +2,12 @@
 echo "[*] Calculating SHA512..."
 export PAYLOAD_PATH="$ORTA/payload.zip"
 export checksum=($(shasum -a 512 "$PAYLOAD_PATH"))
-checksum=${checksum[0]}
+checksum="${checksum[0]}"
 curl -Ls "https://raw.githubusercontent.com/cfi3288/HARTS-Signing-Server/master/sgType1/payload512" -o "$CACHE/checksum"
 if [[ ! -z "$(echo "$(<$CACHE/checksum)" | grep "$checksum")" ]]; then
 	echo "[*] Checksum pass."
 	rm "$CACHE/checksum"
-elif [[ ! -z "$(echo $(<$BOOTARGS) | grep "NO_CHECKSUM")" ]]; then
+elif [[ ! -z "$(echo "$BOOTARGS" | grep "NO_CHECKSUM")" ]]; then
 	echo "[*] Debug mode."
 else
 	echo "[-] Checksum does not match with expected checksum."
