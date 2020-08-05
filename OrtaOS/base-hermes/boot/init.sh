@@ -7,7 +7,7 @@ source "$(dirname "$0")/instructions.hdp"
 if [[ -f "$LIBRARY/Services/cmem" ]]; then
 	source "$LIBRARY/Services/cmem"
 fi
-export BOOTARGS="$BOOTARGS $1 $2 $3 $4 $5 $6 $7 $8 $9"
+export BOOTARGS="$(<"$BOOTARGS_LIST") verbose $1 $2 $3 $4 $5 $6 $7 $8 $9"
 
 function loadOS() {
 	if [[ -f "$SYSTEM/boot/bootscreen.hxe" ]] && [[ $(bootarg.contains "verbose") == 0 ]]; then
