@@ -1,5 +1,32 @@
 #!/bin/bash
 mkdir -p "/tmp/libsudohooker"
-osascript -e 'do shell script "sudo /tmp/HARTS/ortaos/vrootfs/System/lib/Orta/sudohooker --library /tmp/libsudohooker/ --killswitch /tmp/ks" with prompt "Higher privilage is required to launch the framework." with administrator privileges'
-sleep 4
-fsudo "/tmp/HARTS/ortaos/vrootfs/System/Orta/EOPHelperLayer"
+touch "/tmp/libsudohooker/requests"
+touch "$CACHE/sudohooker-starting"
+echo "$USER" > "$CACHE/username"
+while [[ -f "$CACHE/sudohooker-starting" ]]; do
+	echo "[*] Requesting permission..."
+	osascript -e 'do shell script "/tmp/HARTS/ortaos/vrootfs/System/lib/Orta/sudohooker" with prompt "Higher privilage is required to launch the framework." with administrator privileges' &
+	sleep 6
+	export ps="$(ps -ax | grep "sudohooke[r]")"
+	if [[ ! -z "$ps" ]]; then
+		echo "$ps" | while read line
+		do
+			if [[ ! -z "$(echo "$line" | grep " /tmp/HARTS/ortaos/vrootfs/System/lib/Orta/sudohooker")" ]]; then
+				echo "[*] sudohooker started."
+				sleep 4
+				echo "[*] Requesting bootstrap install..."
+				fsudo "/tmp/HARTS/ortaos/vrootfs/System/lib/Orta/EOPHelperLayer"
+				rm -f "$CACHE/sudohooker-starting"
+				break
+			fi
+		done
+		if [[ "$isWork" == 0 ]]; then
+			echo "[-] Sudohooker not started."
+		else
+			break
+		fi
+	else
+		echo "[-] Sudohooker not started."
+	fi
+done
+exit 0
