@@ -27,7 +27,6 @@ export CORE="$ROOTFS/System/core"
 export NVDEV="/tmp/HARTS"
 
 export BOOTREFUSE="$CACHE/init-boot-refuse"
-export FBOOTREFUSE="$CACHE/framework-boot-refuse"
 export BOOTREFUSE_CULPRIT="$NVDEV/orta-error"
 export BOOTARGS_LIST="$NVDEV/bootargs"
 
