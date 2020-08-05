@@ -9,4 +9,4 @@ killall -CONT SidecarRelay
 killall -CONT sharingd
 killall -CONT AirPlayUIAgent
 killall -CONT ExternalQuickLookSatellite
-"$SYSTEM/libexec/terminate"
+"$SYSTEM/bin/terminate"
