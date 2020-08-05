@@ -3,6 +3,5 @@ VersionSigning.hxe
 EnforceReadOnly.hxe
 DetectVM.hxe
 DeploymentChecksum.hxe
-DeployNonePIPPython.hxe
 ClientFrontendStart.hxe
 ClearPasteboard.hxe
