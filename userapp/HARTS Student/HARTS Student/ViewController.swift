@@ -27,6 +27,7 @@ class ViewController: NSViewController {
     
     var TestURLInString: String!
     var stopAsyncLoop = false
+    var isCommandKeyDown = false
     
     private func validateSessionWhenTextFieldsAreUpdated() {
         if Outlet_TextField_JoinPassword.stringValue.count > 0 && Outlet_TextField_SessionCode.stringValue.count > 0 && Outlet_TextField_Name.stringValue.count > 0 {
@@ -142,8 +143,28 @@ class ViewController: NSViewController {
         Outlet_Button_Hide.isHidden = isHidden
     }
     
+    override func keyDown(with event: NSEvent) {
+        
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        if isCommandKeyDown {
+            isCommandKeyDown = false
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {[weak self] in
+            self?.keyDown(with: $0)
+            return $0
+        }
+        
+        NSEvent.addLocalMonitorForEvents(matching: .keyUp) {[weak self] in
+            self?.keyUp(with: $0)
+            return $0
+        }
         
         NSSwiftUtils.executeShellScript("mkdir", "-p", "/tmp/HARTS")
         
