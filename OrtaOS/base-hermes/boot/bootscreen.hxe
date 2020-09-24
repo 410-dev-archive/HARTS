@@ -1,0 +1,9 @@
+#!/bin/bash
+cat "$(dirname "$0")/bootcredit"
+if [[ -f "$CORE/resources/coreversion" ]]; then
+	echo -n "Starting Hermes Core - v."
+	cat "$CORE/resources/coreversion"
+	echo ""
+else
+	echo "[-] Warning: Core version not found."
+fi

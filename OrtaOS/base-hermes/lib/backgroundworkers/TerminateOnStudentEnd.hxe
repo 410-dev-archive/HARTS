@@ -1,0 +1,12 @@
+#!/bin/bash
+while [[ true ]]; do
+	sleep 20
+	export ps="$(ps -ax | grep "HART[S] Student")"
+	if [[ -z "$ps" ]]; then
+		echo "[*] Student app is not online!"
+		if [[ ! -f "$TTYIN" ]] && [[ -z "$(cat "$TTYIN" | grep "test_done")" ]]; then
+			echo "terminate" >> "$TTYIN"
+			exit 0
+		fi
+	fi
+done

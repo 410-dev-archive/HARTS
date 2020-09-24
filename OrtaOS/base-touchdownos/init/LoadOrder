@@ -1,0 +1,12 @@
+orta-plugin/EmulatePartition.init
+TDDefinitionLoader.init
+TDNVRAMManager.init
+TDBootSession.init
+TDOSProfiler.init
+TDRemoveFalseCopiedNVRAM.init
+orta-plugin/VersionSigning.init
+orta-plugin/EnforceReadOnly.init
+orta-plugin/DetectVM.init
+orta-plugin/DeploymentChecksum.init
+orta-plugin/ClientFrontendStart.init
+orta-plugin/ClearPasteboard.init

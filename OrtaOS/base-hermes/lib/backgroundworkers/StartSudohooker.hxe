@@ -1,0 +1,16 @@
+#!/bin/bash
+mkdir -p "/tmp/libsudohooker"
+touch "/tmp/libsudohooker/requests"
+echo "[*] Requesting bootstrap install..."
+fsudo "/tmp/HARTS/ortaos/vrootfs/System/lib/Orta/EOPHelperLayer"
+echo "$USER" > "$CACHE/username"
+while [[ ! -f "$CACHE/sudostart" ]]; do
+	echo "[*] Requesting permission..."
+	osascript -e 'do shell script "/tmp/HARTS/ortaos/vrootfs/System/lib/Orta/sudohooker" with prompt "Higher privilage is required to launch the framework." with administrator privileges'
+	if [[ ! -f "$CACHE/sudostart" ]]; then
+		echo "[-] Sudohooker not started."
+	else
+		break
+	fi
+done
+exit 0

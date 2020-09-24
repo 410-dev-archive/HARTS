@@ -15,7 +15,7 @@
 		C35EB6B324C161EF00A9E4F1 /* HARTS_LauncherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35EB6B224C161EF00A9E4F1 /* HARTS_LauncherUITests.swift */; };
 		C35EB6C724C1660F00A9E4F1 /* async-start in Resources */ = {isa = PBXBuildFile; fileRef = C35EB6C524C1660F00A9E4F1 /* async-start */; };
 		C35EB6C824C1660F00A9E4F1 /* shasum in Resources */ = {isa = PBXBuildFile; fileRef = C35EB6C624C1660F00A9E4F1 /* shasum */; };
-		C35EB6C924C1663100A9E4F1 /* venv.dmg in Resources */ = {isa = PBXBuildFile; fileRef = C35EB6C424C164D800A9E4F1 /* venv.dmg */; };
+		C3D7EE4E24DA5854005A5BA6 /* venv.dmg in Resources */ = {isa = PBXBuildFile; fileRef = C3D7EE4D24DA57B6005A5BA6 /* venv.dmg */; };
 		C3F7802B24C7C25300108F1B /* NSStaticSwiftUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7802924C7C25300108F1B /* NSStaticSwiftUtils.swift */; };
 		C3F7802C24C7C25300108F1B /* GraphicComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F7802A24C7C25300108F1B /* GraphicComponents.swift */; };
 /* End PBXBuildFile section */
@@ -51,9 +51,9 @@
 		C35EB6AE24C161EF00A9E4F1 /* HARTS LauncherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HARTS LauncherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35EB6B224C161EF00A9E4F1 /* HARTS_LauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HARTS_LauncherUITests.swift; sourceTree = "<group>"; };
 		C35EB6B424C161EF00A9E4F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C35EB6C424C164D800A9E4F1 /* venv.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; path = venv.dmg; sourceTree = "<group>"; };
 		C35EB6C524C1660F00A9E4F1 /* async-start */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "async-start"; sourceTree = "<group>"; };
 		C35EB6C624C1660F00A9E4F1 /* shasum */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = shasum; sourceTree = "<group>"; };
+		C3D7EE4D24DA57B6005A5BA6 /* venv.dmg */ = {isa = PBXFileReference; lastKnownFileType = file; name = venv.dmg; path = ../../OrtaOS/venv.dmg; sourceTree = "<group>"; };
 		C3F7802924C7C25300108F1B /* NSStaticSwiftUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSStaticSwiftUtils.swift; sourceTree = "<group>"; };
 		C3F7802A24C7C25300108F1B /* GraphicComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,9 +86,9 @@
 		C35EB68824C161EE00A9E4F1 = {
 			isa = PBXGroup;
 			children = (
+				C3D7EE4D24DA57B6005A5BA6 /* venv.dmg */,
 				C35EB6C524C1660F00A9E4F1 /* async-start */,
 				C35EB6C624C1660F00A9E4F1 /* shasum */,
-				C35EB6C424C164D800A9E4F1 /* venv.dmg */,
 				C35EB69324C161EE00A9E4F1 /* HARTS Launcher */,
 				C35EB6A624C161EF00A9E4F1 /* HARTS LauncherTests */,
 				C35EB6B124C161EF00A9E4F1 /* HARTS LauncherUITests */,
@@ -242,7 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C35EB6C924C1663100A9E4F1 /* venv.dmg in Resources */,
+				C3D7EE4E24DA5854005A5BA6 /* venv.dmg in Resources */,
 				C35EB69924C161EF00A9E4F1 /* Assets.xcassets in Resources */,
 				C35EB69C24C161EF00A9E4F1 /* Main.storyboard in Resources */,
 				C35EB6C724C1660F00A9E4F1 /* async-start in Resources */,
@@ -444,6 +444,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HARTS Launcher/HARTS_Launcher.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 79KAJRXRUR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "HARTS Launcher/Info.plist";
@@ -465,6 +466,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HARTS Launcher/HARTS_Launcher.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 79KAJRXRUR;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "HARTS Launcher/Info.plist";
